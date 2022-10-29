@@ -1,0 +1,28 @@
+{
+  "smolPlusTempApp": {
+    "eventDevice": {
+      "home": {
+        "title": "Event Devices",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Event Device",
+        "createOrEditLabel": "Crear o editar Event Device",
+        "notFound": "Ningún Event Devices encontrado"
+      },
+      "created": "Un nuevo Event Device ha sido creado con el identificador {{ param }}",
+      "updated": "Un Event Device ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Event Device ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Event Device {{ id }}?"
+      },
+      "detail": {
+        "title": "Event Device"
+      },
+      "id": "Id",
+      "createdAt": "Created At",
+      "theoreticalPercentage": "Theoretical Percentage",
+      "moneyDenomination": "Money Denomination",
+      "deviceEstablishment": "Device Establishment",
+      "eventType": "Event Type"
+    }
+  }
+}

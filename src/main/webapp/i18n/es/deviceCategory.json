@@ -1,0 +1,25 @@
+{
+  "smolPlusTempApp": {
+    "deviceCategory": {
+      "home": {
+        "title": "Device Categories",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Device Category",
+        "createOrEditLabel": "Crear o editar Device Category",
+        "notFound": "Ningún Device Categories encontrado"
+      },
+      "created": "Un nuevo Device Category ha sido creado con el identificador {{ param }}",
+      "updated": "Un Device Category ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Device Category ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Device Category {{ id }}?"
+      },
+      "detail": {
+        "title": "Device Category"
+      },
+      "id": "Id",
+      "description": "Description",
+      "name": "Name"
+    }
+  }
+}

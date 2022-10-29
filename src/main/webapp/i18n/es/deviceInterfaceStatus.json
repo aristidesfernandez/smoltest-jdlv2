@@ -1,0 +1,10 @@
+{
+  "smolPlusTempApp": {
+    "DeviceInterfaceStatus": {
+      "null": "",
+      "STOCK": "STOCK",
+      "OPERATION": "OPERATION",
+      "MAINTENANCE": "MAINTENANCE"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="establishment">
+      <h2 data-cy="establishmentDetailsHeading"><span jhiTranslate="smolPlusTempApp.establishment.detail.title">Establishment</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.id">Id</span></dt>
+        <dd>
+          <span>{{ establishment.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.liquidationTime">Liquidation Time</span></dt>
+        <dd>
+          <span>{{ establishment.liquidationTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.name">Name</span></dt>
+        <dd>
+          <span>{{ establishment.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'smolPlusTempApp.EstablishmentType.' + establishment.type }}">{{ establishment.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.neighborhood">Neighborhood</span></dt>
+        <dd>
+          <span>{{ establishment.neighborhood }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.address">Address</span></dt>
+        <dd>
+          <span>{{ establishment.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.coljuegosCode">Coljuegos Code</span></dt>
+        <dd>
+          <span>{{ establishment.coljuegosCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ establishment.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.closeTime">Close Time</span></dt>
+        <dd>
+          <span>{{ establishment.closeTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ establishment.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ establishment.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.mercantileRegistration">Mercantile Registration</span></dt>
+        <dd>
+          <span>{{ establishment.mercantileRegistration }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.operator">Operator</span></dt>
+        <dd>
+          <div *ngIf="establishment.operator">
+            <a [routerLink]="['/operator', establishment.operator.id, 'view']">{{ establishment.operator.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.establishment.municipality">Municipality</span></dt>
+        <dd>
+          <div *ngIf="establishment.municipality">
+            <a [routerLink]="['/municipality', establishment.municipality.id, 'view']">{{ establishment.municipality.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/establishment', establishment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

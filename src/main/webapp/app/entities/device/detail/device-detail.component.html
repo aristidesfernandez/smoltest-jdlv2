@@ -1,0 +1,202 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="device">
+      <h2 data-cy="deviceDetailsHeading"><span jhiTranslate="smolPlusTempApp.device.detail.title">Device</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.device.id">Id</span></dt>
+        <dd>
+          <span>{{ device.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.serial">Serial</span></dt>
+        <dd>
+          <span>{{ device.serial }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.isProtocolEsdcs">Is Protocol Esdcs</span></dt>
+        <dd>
+          <span>{{ device.isProtocolEsdcs }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.numberPlayedReport">Number Played Report</span></dt>
+        <dd>
+          <span>{{ device.numberPlayedReport }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.sasDenomination">Sas Denomination</span></dt>
+        <dd>
+          <span>{{ device.sasDenomination }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.isMultigame">Is Multigame</span></dt>
+        <dd>
+          <span>{{ device.isMultigame }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.isMultiDenomination">Is Multi Denomination</span></dt>
+        <dd>
+          <span>{{ device.isMultiDenomination }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.isRetanqueo">Is Retanqueo</span></dt>
+        <dd>
+          <span>{{ device.isRetanqueo }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.state">State</span></dt>
+        <dd>
+          <span>{{ device.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.theoreticalHold">Theoretical Hold</span></dt>
+        <dd>
+          <span>{{ device.theoreticalHold }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.sasIdentifier">Sas Identifier</span></dt>
+        <dd>
+          <span>{{ device.sasIdentifier }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.creditLimit">Credit Limit</span></dt>
+        <dd>
+          <span>{{ device.creditLimit }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.hasHooper">Has Hooper</span></dt>
+        <dd>
+          <span>{{ device.hasHooper }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.coljuegosCode">Coljuegos Code</span></dt>
+        <dd>
+          <span>{{ device.coljuegosCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.fabricationDate">Fabrication Date</span></dt>
+        <dd>
+          <span>{{ device.fabricationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.currentToken">Current Token</span></dt>
+        <dd>
+          <span>{{ device.currentToken }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.denominationTito">Denomination Tito</span></dt>
+        <dd>
+          <span>{{ device.denominationTito }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.endLostCommunication">End Lost Communication</span></dt>
+        <dd>
+          <span>{{ device.endLostCommunication | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.startLostCommunication">Start Lost Communication</span></dt>
+        <dd>
+          <span>{{ device.startLostCommunication | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.reportMultiplier">Report Multiplier</span></dt>
+        <dd>
+          <span>{{ device.reportMultiplier }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.nuid">Nuid</span></dt>
+        <dd>
+          <span>{{ device.nuid }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.payManualPrize">Pay Manual Prize</span></dt>
+        <dd>
+          <span>{{ device.payManualPrize }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.manualHandpay">Manual Handpay</span></dt>
+        <dd>
+          <span>{{ device.manualHandpay }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.manualJackpot">Manual Jackpot</span></dt>
+        <dd>
+          <span>{{ device.manualJackpot }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.manualGameEvent">Manual Game Event</span></dt>
+        <dd>
+          <span>{{ device.manualGameEvent }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.betCode">Bet Code</span></dt>
+        <dd>
+          <span>{{ device.betCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.homologationIndicator">Homologation Indicator</span></dt>
+        <dd>
+          <span>{{ device.homologationIndicator }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.coljuegosModel">Coljuegos Model</span></dt>
+        <dd>
+          <span>{{ device.coljuegosModel }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.reportable">Reportable</span></dt>
+        <dd>
+          <span>{{ device.reportable }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.aftDenomination">Aft Denomination</span></dt>
+        <dd>
+          <span>{{ device.aftDenomination }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.lastUpdateDate">Last Update Date</span></dt>
+        <dd>
+          <span>{{ device.lastUpdateDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.enableRollover">Enable Rollover</span></dt>
+        <dd>
+          <span>{{ device.enableRollover }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.lastCorruptionDate">Last Corruption Date</span></dt>
+        <dd>
+          <span>{{ device.lastCorruptionDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.daftDenomination">Daft Denomination</span></dt>
+        <dd>
+          <span>{{ device.daftDenomination }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.prizesEnabled">Prizes Enabled</span></dt>
+        <dd>
+          <span>{{ device.prizesEnabled }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.currencyTypeId">Currency Type Id</span></dt>
+        <dd>
+          <span>{{ device.currencyTypeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.isleId">Isle Id</span></dt>
+        <dd>
+          <span>{{ device.isleId }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.model">Model</span></dt>
+        <dd>
+          <div *ngIf="device.model">
+            <a [routerLink]="['/model', device.model.id, 'view']">{{ device.model.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.deviceCategory">Device Category</span></dt>
+        <dd>
+          <div *ngIf="device.deviceCategory">
+            <a [routerLink]="['/device-category', device.deviceCategory.id, 'view']">{{ device.deviceCategory.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.deviceType">Device Type</span></dt>
+        <dd>
+          <div *ngIf="device.deviceType">
+            <a [routerLink]="['/device-type', device.deviceType.id, 'view']">{{ device.deviceType.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.formulaHandpay">Formula Handpay</span></dt>
+        <dd>
+          <div *ngIf="device.formulaHandpay">
+            <a [routerLink]="['/formula', device.formulaHandpay.id, 'view']">{{ device.formulaHandpay.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.device.formulaJackpot">Formula Jackpot</span></dt>
+        <dd>
+          <div *ngIf="device.formulaJackpot">
+            <a [routerLink]="['/formula', device.formulaJackpot.id, 'view']">{{ device.formulaJackpot.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/device', device.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

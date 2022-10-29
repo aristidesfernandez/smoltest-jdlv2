@@ -1,0 +1,163 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-device-establishment-heading"
+        data-cy="DeviceEstablishmentCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.deviceEstablishment.home.createOrEditLabel"
+      >
+        Crear o editar Device Establishment
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.id" for="field_id">Id</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.registrationAt" for="field_registrationAt"
+            >Registration At</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_registrationAt"
+              data-cy="registrationAt"
+              type="datetime-local"
+              class="form-control"
+              name="registrationAt"
+              formControlName="registrationAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('registrationAt')!.invalid && (editForm.get('registrationAt')!.dirty || editForm.get('registrationAt')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('registrationAt')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('registrationAt')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              Este campo debe ser una fecha y hora.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.departureAt" for="field_departureAt"
+            >Departure At</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_departureAt"
+              data-cy="departureAt"
+              type="datetime-local"
+              class="form-control"
+              name="departureAt"
+              formControlName="departureAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.deviceNumber" for="field_deviceNumber"
+            >Device Number</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="deviceNumber"
+            id="field_deviceNumber"
+            data-cy="deviceNumber"
+            formControlName="deviceNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.consecutiveDevice" for="field_consecutiveDevice"
+            >Consecutive Device</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="consecutiveDevice"
+            id="field_consecutiveDevice"
+            data-cy="consecutiveDevice"
+            formControlName="consecutiveDevice"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.establishmentId" for="field_establishmentId"
+            >Establishment Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="establishmentId"
+            id="field_establishmentId"
+            data-cy="establishmentId"
+            formControlName="establishmentId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.negativeAward" for="field_negativeAward"
+            >Negative Award</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="negativeAward"
+            id="field_negativeAward"
+            data-cy="negativeAward"
+            formControlName="negativeAward"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceEstablishment.device" for="field_device">Device</label>
+          <select
+            class="form-control"
+            id="field_device"
+            data-cy="device"
+            name="device"
+            formControlName="device"
+            [compareWith]="compareDevice"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="deviceOption" *ngFor="let deviceOption of devicesSharedCollection">{{ deviceOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

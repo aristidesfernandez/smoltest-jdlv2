@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="municipality">
+      <h2 data-cy="municipalityDetailsHeading"><span jhiTranslate="smolPlusTempApp.municipality.detail.title">Municipality</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.municipality.id">Id</span></dt>
+        <dd>
+          <span>{{ municipality.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.municipality.code">Code</span></dt>
+        <dd>
+          <span>{{ municipality.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.municipality.name">Name</span></dt>
+        <dd>
+          <span>{{ municipality.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.municipality.daneCode">Dane Code</span></dt>
+        <dd>
+          <span>{{ municipality.daneCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.municipality.province">Province</span></dt>
+        <dd>
+          <div *ngIf="municipality.province">
+            <a [routerLink]="['/province', municipality.province.id, 'view']">{{ municipality.province.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/municipality', municipality.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

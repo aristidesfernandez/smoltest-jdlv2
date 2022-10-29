@@ -1,0 +1,398 @@
+<div>
+  <h2 id="page-heading" data-cy="DeviceHeading">
+    <span jhiTranslate="smolPlusTempApp.device.home.title">Devices</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.device.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-device"
+        [routerLink]="['/device/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.device.home.createLabel"> Crear nuevo Device </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="devices?.length === 0">
+    <span jhiTranslate="smolPlusTempApp.device.home.notFound">Ningún Devices encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="devices && devices.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="serial">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.serial">Serial</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isProtocolEsdcs">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.isProtocolEsdcs">Is Protocol Esdcs</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numberPlayedReport">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.numberPlayedReport">Number Played Report</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sasDenomination">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.sasDenomination">Sas Denomination</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isMultigame">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.isMultigame">Is Multigame</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isMultiDenomination">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.isMultiDenomination">Is Multi Denomination</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isRetanqueo">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.isRetanqueo">Is Retanqueo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.state">State</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="theoreticalHold">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.theoreticalHold">Theoretical Hold</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sasIdentifier">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.sasIdentifier">Sas Identifier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="creditLimit">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.creditLimit">Credit Limit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hasHooper">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.hasHooper">Has Hooper</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="coljuegosCode">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.coljuegosCode">Coljuegos Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fabricationDate">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.fabricationDate">Fabrication Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currentToken">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.currentToken">Current Token</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="denominationTito">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.denominationTito">Denomination Tito</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="endLostCommunication">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.endLostCommunication">End Lost Communication</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="startLostCommunication">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.startLostCommunication">Start Lost Communication</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportMultiplier">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.reportMultiplier">Report Multiplier</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nuid">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.nuid">Nuid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="payManualPrize">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.payManualPrize">Pay Manual Prize</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="manualHandpay">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.manualHandpay">Manual Handpay</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="manualJackpot">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.manualJackpot">Manual Jackpot</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="manualGameEvent">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.manualGameEvent">Manual Game Event</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="betCode">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.betCode">Bet Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="homologationIndicator">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.homologationIndicator">Homologation Indicator</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="coljuegosModel">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.coljuegosModel">Coljuegos Model</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reportable">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.reportable">Reportable</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="aftDenomination">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.aftDenomination">Aft Denomination</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastUpdateDate">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.lastUpdateDate">Last Update Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="enableRollover">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.enableRollover">Enable Rollover</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastCorruptionDate">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.lastCorruptionDate">Last Corruption Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="daftDenomination">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.daftDenomination">Daft Denomination</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prizesEnabled">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.prizesEnabled">Prizes Enabled</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currencyTypeId">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.currencyTypeId">Currency Type Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isleId">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.isleId">Isle Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="model.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.model">Model</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deviceCategory.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.deviceCategory">Device Category</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deviceType.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.deviceType">Device Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="formulaHandpay.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.formulaHandpay">Formula Handpay</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="formulaJackpot.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.device.formulaJackpot">Formula Jackpot</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let device of devices; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/device', device.id, 'view']">{{ device.id }}</a>
+          </td>
+          <td>{{ device.serial }}</td>
+          <td>{{ device.isProtocolEsdcs }}</td>
+          <td>{{ device.numberPlayedReport }}</td>
+          <td>{{ device.sasDenomination }}</td>
+          <td>{{ device.isMultigame }}</td>
+          <td>{{ device.isMultiDenomination }}</td>
+          <td>{{ device.isRetanqueo }}</td>
+          <td>{{ device.state }}</td>
+          <td>{{ device.theoreticalHold }}</td>
+          <td>{{ device.sasIdentifier }}</td>
+          <td>{{ device.creditLimit }}</td>
+          <td>{{ device.hasHooper }}</td>
+          <td>{{ device.coljuegosCode }}</td>
+          <td>{{ device.fabricationDate | formatMediumDate }}</td>
+          <td>{{ device.currentToken }}</td>
+          <td>{{ device.denominationTito }}</td>
+          <td>{{ device.endLostCommunication | formatMediumDatetime }}</td>
+          <td>{{ device.startLostCommunication | formatMediumDatetime }}</td>
+          <td>{{ device.reportMultiplier }}</td>
+          <td>{{ device.nuid }}</td>
+          <td>{{ device.payManualPrize }}</td>
+          <td>{{ device.manualHandpay }}</td>
+          <td>{{ device.manualJackpot }}</td>
+          <td>{{ device.manualGameEvent }}</td>
+          <td>{{ device.betCode }}</td>
+          <td>{{ device.homologationIndicator }}</td>
+          <td>{{ device.coljuegosModel }}</td>
+          <td>{{ device.reportable }}</td>
+          <td>{{ device.aftDenomination }}</td>
+          <td>{{ device.lastUpdateDate | formatMediumDatetime }}</td>
+          <td>{{ device.enableRollover }}</td>
+          <td>{{ device.lastCorruptionDate | formatMediumDatetime }}</td>
+          <td>{{ device.daftDenomination }}</td>
+          <td>{{ device.prizesEnabled }}</td>
+          <td>{{ device.currencyTypeId }}</td>
+          <td>{{ device.isleId }}</td>
+          <td>
+            <div *ngIf="device.model">
+              <a [routerLink]="['/model', device.model.id, 'view']">{{ device.model.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="device.deviceCategory">
+              <a [routerLink]="['/device-category', device.deviceCategory.id, 'view']">{{ device.deviceCategory.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="device.deviceType">
+              <a [routerLink]="['/device-type', device.deviceType.id, 'view']">{{ device.deviceType.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="device.formulaHandpay">
+              <a [routerLink]="['/formula', device.formulaHandpay.id, 'view']">{{ device.formulaHandpay.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="device.formulaJackpot">
+              <a [routerLink]="['/formula', device.formulaJackpot.id, 'view']">{{ device.formulaJackpot.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/device', device.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/device', device.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(device)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="devices && devices.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

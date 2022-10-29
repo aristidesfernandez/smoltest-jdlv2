@@ -1,0 +1,33 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927200320",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "operational_properties_establishment",
+  "fields": [
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "OperationalPropertiesEstablishment",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "keyOperatingProperty",
+      "relationshipName": "keyOperatingProperty",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "establishment",
+      "relationshipName": "establishment",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

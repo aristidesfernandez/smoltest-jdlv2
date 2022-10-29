@@ -1,0 +1,30 @@
+{
+  "smolPlusTempApp": {
+    "deviceEstablishment": {
+      "home": {
+        "title": "Device Establishments",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Device Establishment",
+        "createOrEditLabel": "Crear o editar Device Establishment",
+        "notFound": "Ningún Device Establishments encontrado"
+      },
+      "created": "Un nuevo Device Establishment ha sido creado con el identificador {{ param }}",
+      "updated": "Un Device Establishment ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Device Establishment ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Device Establishment {{ id }}?"
+      },
+      "detail": {
+        "title": "Device Establishment"
+      },
+      "id": "Id",
+      "registrationAt": "Registration At",
+      "departureAt": "Departure At",
+      "deviceNumber": "Device Number",
+      "consecutiveDevice": "Consecutive Device",
+      "establishmentId": "Establishment Id",
+      "negativeAward": "Negative Award",
+      "device": "Device"
+    }
+  }
+}

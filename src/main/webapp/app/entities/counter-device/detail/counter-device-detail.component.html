@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="counterDevice">
+      <h2 data-cy="counterDeviceDetailsHeading"><span jhiTranslate="smolPlusTempApp.counterDevice.detail.title">Counter Device</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.id">Id</span></dt>
+        <dd>
+          <span>{{ counterDevice.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.value">Value</span></dt>
+        <dd>
+          <span>{{ counterDevice.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.rolloverValue">Rollover Value</span></dt>
+        <dd>
+          <span>{{ counterDevice.rolloverValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.creditSale">Credit Sale</span></dt>
+        <dd>
+          <span>{{ counterDevice.creditSale }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.manualCounter">Manual Counter</span></dt>
+        <dd>
+          <span>{{ counterDevice.manualCounter }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.manualMultiplier">Manual Multiplier</span></dt>
+        <dd>
+          <span>{{ counterDevice.manualMultiplier }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.decimalsManualCounter">Decimals Manual Counter</span></dt>
+        <dd>
+          <span>{{ counterDevice.decimalsManualCounter }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterDevice.device">Device</span></dt>
+        <dd>
+          <div *ngIf="counterDevice.device">
+            <a [routerLink]="['/device', counterDevice.device.id, 'view']">{{ counterDevice.device.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/counter-device', counterDevice.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

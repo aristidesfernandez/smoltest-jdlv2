@@ -1,0 +1,56 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927195920",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "model",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "subtractBonus",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "collectionCeil",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "rolloverLimit",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Model",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "manufacturer",
+      "relationshipName": "manufacturer",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "formula",
+      "relationshipName": "formula",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

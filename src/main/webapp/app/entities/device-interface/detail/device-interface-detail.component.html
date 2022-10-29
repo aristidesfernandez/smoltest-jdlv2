@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="deviceInterface">
+      <h2 data-cy="deviceInterfaceDetailsHeading">
+        <span jhiTranslate="smolPlusTempApp.deviceInterface.detail.title">Device Interface</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.id">Id</span></dt>
+        <dd>
+          <span>{{ deviceInterface.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ deviceInterface.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ deviceInterface.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.establishmentId">Establishment Id</span></dt>
+        <dd>
+          <span>{{ deviceInterface.establishmentId }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'smolPlusTempApp.DeviceInterfaceStatus.' + deviceInterface.state }}">{{ deviceInterface.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.device">Device</span></dt>
+        <dd>
+          <div *ngIf="deviceInterface.device">
+            <a [routerLink]="['/device', deviceInterface.device.id, 'view']">{{ deviceInterface.device.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.deviceInterface.interfaceBoard">Interface Board</span></dt>
+        <dd>
+          <div *ngIf="deviceInterface.interfaceBoard">
+            <a [routerLink]="['/interface-board', deviceInterface.interfaceBoard.id, 'view']">{{ deviceInterface.interfaceBoard.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/device-interface', deviceInterface.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Device.
+    -->
+    <changeSet id="20210927195520-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="model_id"
+                                 baseTableName="device"
+                                 constraintName="fk_device__model_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="model"/>
+
+        <addForeignKeyConstraint baseColumnNames="device_category_id"
+                                 baseTableName="device"
+                                 constraintName="fk_device__device_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="device_category"/>
+
+        <addForeignKeyConstraint baseColumnNames="device_type_id"
+                                 baseTableName="device"
+                                 constraintName="fk_device__device_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="device_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="formula_handpay_id"
+                                 baseTableName="device"
+                                 constraintName="fk_device__formula_handpay_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="formula"/>
+
+        <addForeignKeyConstraint baseColumnNames="formula_jackpot_id"
+                                 baseTableName="device"
+                                 constraintName="fk_device__formula_jackpot_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="formula"/>
+    </changeSet>
+</databaseChangeLog>

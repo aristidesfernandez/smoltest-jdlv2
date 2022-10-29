@@ -1,0 +1,139 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-counter-type-heading"
+        data-cy="CounterTypeCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.counterType.home.createOrEditLabel"
+      >
+        Crear o editar Counter Type
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.counterCode" for="field_counterCode">Counter Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="counterCode"
+            id="field_counterCode"
+            data-cy="counterCode"
+            formControlName="counterCode"
+            [readonly]="editForm.get('counterCode')!.value != null"
+          />
+          <div *ngIf="editForm.get('counterCode')!.invalid && (editForm.get('counterCode')!.dirty || editForm.get('counterCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('counterCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2 }"
+            >
+              Este campo no puede superar más de 2 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('name')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+          <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('description')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.includedInFormula" for="field_includedInFormula"
+            >Included In Formula</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="includedInFormula"
+            id="field_includedInFormula"
+            data-cy="includedInFormula"
+            formControlName="includedInFormula"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.prize" for="field_prize">Prize</label>
+          <input type="checkbox" class="form-check" name="prize" id="field_prize" data-cy="prize" formControlName="prize" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.category" for="field_category">Category</label>
+          <input type="text" class="form-control" name="category" id="field_category" data-cy="category" formControlName="category" />
+          <div *ngIf="editForm.get('category')!.invalid && (editForm.get('category')!.dirty || editForm.get('category')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('category')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterType.udteWaitTime" for="field_udteWaitTime">Udte Wait Time</label>
+          <input
+            type="number"
+            class="form-control"
+            name="udteWaitTime"
+            id="field_udteWaitTime"
+            data-cy="udteWaitTime"
+            formControlName="udteWaitTime"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

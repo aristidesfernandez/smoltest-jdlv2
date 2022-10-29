@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="model">
+      <h2 data-cy="modelDetailsHeading"><span jhiTranslate="smolPlusTempApp.model.detail.title">Model</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.model.id">Id</span></dt>
+        <dd>
+          <span>{{ model.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.code">Code</span></dt>
+        <dd>
+          <span>{{ model.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.name">Name</span></dt>
+        <dd>
+          <span>{{ model.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.subtractBonus">Subtract Bonus</span></dt>
+        <dd>
+          <span>{{ model.subtractBonus }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.collectionCeil">Collection Ceil</span></dt>
+        <dd>
+          <span>{{ model.collectionCeil }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.rolloverLimit">Rollover Limit</span></dt>
+        <dd>
+          <span>{{ model.rolloverLimit }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.manufacturer">Manufacturer</span></dt>
+        <dd>
+          <div *ngIf="model.manufacturer">
+            <a [routerLink]="['/manufacturer', model.manufacturer.id, 'view']">{{ model.manufacturer.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.model.formula">Formula</span></dt>
+        <dd>
+          <div *ngIf="model.formula">
+            <a [routerLink]="['/formula', model.formula.id, 'view']">{{ model.formula.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/model', model.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

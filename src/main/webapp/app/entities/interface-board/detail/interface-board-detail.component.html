@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="interfaceBoard">
+      <h2 data-cy="interfaceBoardDetailsHeading">
+        <span jhiTranslate="smolPlusTempApp.interfaceBoard.detail.title">Interface Board</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.id">Id</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.isAssigned">Is Assigned</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.isAssigned }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.ipAddress">Ip Address</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.ipAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.hash">Hash</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.hash }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.serial">Serial</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.serial }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.version">Version</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.interfaceBoard.port">Port</span></dt>
+        <dd>
+          <span>{{ interfaceBoard.port }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/interface-board', interfaceBoard.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

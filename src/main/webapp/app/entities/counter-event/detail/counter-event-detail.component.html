@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="counterEvent">
+      <h2 data-cy="counterEventDetailsHeading"><span jhiTranslate="smolPlusTempApp.counterEvent.detail.title">Counter Event</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.counterEvent.id">Id</span></dt>
+        <dd>
+          <span>{{ counterEvent.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterEvent.valueCounter">Value Counter</span></dt>
+        <dd>
+          <span>{{ counterEvent.valueCounter }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterEvent.denominationSale">Denomination Sale</span></dt>
+        <dd>
+          <span>{{ counterEvent.denominationSale }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterEvent.counterCode">Counter Code</span></dt>
+        <dd>
+          <span>{{ counterEvent.counterCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterEvent.eventDevice">Event Device</span></dt>
+        <dd>
+          <div *ngIf="counterEvent.eventDevice">
+            <a [routerLink]="['/event-device', counterEvent.eventDevice.id, 'view']">{{ counterEvent.eventDevice.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/counter-event', counterEvent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

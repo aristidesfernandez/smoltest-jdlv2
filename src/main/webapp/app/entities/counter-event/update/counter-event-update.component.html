@@ -1,0 +1,121 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-counter-event-heading"
+        data-cy="CounterEventCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.counterEvent.home.createOrEditLabel"
+      >
+        Crear o editar Counter Event
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterEvent.id" for="field_id">Id</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterEvent.valueCounter" for="field_valueCounter">Value Counter</label>
+          <input
+            type="number"
+            class="form-control"
+            name="valueCounter"
+            id="field_valueCounter"
+            data-cy="valueCounter"
+            formControlName="valueCounter"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterEvent.denominationSale" for="field_denominationSale"
+            >Denomination Sale</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="denominationSale"
+            id="field_denominationSale"
+            data-cy="denominationSale"
+            formControlName="denominationSale"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterEvent.counterCode" for="field_counterCode">Counter Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="counterCode"
+            id="field_counterCode"
+            data-cy="counterCode"
+            formControlName="counterCode"
+          />
+          <div *ngIf="editForm.get('counterCode')!.invalid && (editForm.get('counterCode')!.dirty || editForm.get('counterCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('counterCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('counterCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2 }"
+            >
+              Este campo no puede superar más de 2 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterEvent.eventDevice" for="field_eventDevice">Event Device</label>
+          <select
+            class="form-control"
+            id="field_eventDevice"
+            data-cy="eventDevice"
+            name="eventDevice"
+            formControlName="eventDevice"
+            [compareWith]="compareEventDevice"
+          >
+            <option *ngIf="!editForm.get('eventDevice')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="eventDeviceOption" *ngFor="let eventDeviceOption of eventDevicesSharedCollection">
+              {{ eventDeviceOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['eventDevice'])!.invalid && (editForm.get(['eventDevice'])!.dirty || editForm.get(['eventDevice'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['eventDevice'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

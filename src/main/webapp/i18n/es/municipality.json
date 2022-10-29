@@ -1,0 +1,27 @@
+{
+  "smolPlusTempApp": {
+    "municipality": {
+      "home": {
+        "title": "Municipalities",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Municipality",
+        "createOrEditLabel": "Crear o editar Municipality",
+        "notFound": "Ningún Municipalities encontrado"
+      },
+      "created": "Un nuevo Municipality ha sido creado con el identificador {{ param }}",
+      "updated": "Un Municipality ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Municipality ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Municipality {{ id }}?"
+      },
+      "detail": {
+        "title": "Municipality"
+      },
+      "id": "Id",
+      "code": "Code",
+      "name": "Name",
+      "daneCode": "Dane Code",
+      "province": "Province"
+    }
+  }
+}

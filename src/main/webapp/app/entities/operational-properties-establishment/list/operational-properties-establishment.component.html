@@ -1,0 +1,149 @@
+<div>
+  <h2 id="page-heading" data-cy="OperationalPropertiesEstablishmentHeading">
+    <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.home.title">Operational Properties Establishments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-operational-properties-establishment"
+        [routerLink]="['/operational-properties-establishment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.home.createLabel">
+          Crear nuevo Operational Properties Establishment
+        </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="operationalPropertiesEstablishments?.length === 0">
+    <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.home.notFound"
+      >Ningún Operational Properties Establishments encontrado</span
+    >
+  </div>
+
+  <div
+    class="table-responsive table-entities"
+    id="entities"
+    *ngIf="operationalPropertiesEstablishments && operationalPropertiesEstablishments.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="value">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.value">Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="keyOperatingProperty.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.keyOperatingProperty">Key Operating Property</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="establishment.id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.establishment">Establishment</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operationalPropertiesEstablishment of operationalPropertiesEstablishments; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/operational-properties-establishment', operationalPropertiesEstablishment.id, 'view']">{{
+              operationalPropertiesEstablishment.id
+            }}</a>
+          </td>
+          <td>{{ operationalPropertiesEstablishment.value }}</td>
+          <td>
+            <div *ngIf="operationalPropertiesEstablishment.keyOperatingProperty">
+              <a [routerLink]="['/key-operating-property', operationalPropertiesEstablishment.keyOperatingProperty.id, 'view']">{{
+                operationalPropertiesEstablishment.keyOperatingProperty.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="operationalPropertiesEstablishment.establishment">
+              <a [routerLink]="['/establishment', operationalPropertiesEstablishment.establishment.id, 'view']">{{
+                operationalPropertiesEstablishment.establishment.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/operational-properties-establishment', operationalPropertiesEstablishment.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/operational-properties-establishment', operationalPropertiesEstablishment.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(operationalPropertiesEstablishment)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="operationalPropertiesEstablishments && operationalPropertiesEstablishments.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

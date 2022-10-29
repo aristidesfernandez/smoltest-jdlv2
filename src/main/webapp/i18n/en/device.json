@@ -1,0 +1,64 @@
+{
+  "smolPlusTempApp": {
+    "device": {
+      "home": {
+        "title": "Devices",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Device",
+        "createOrEditLabel": "Create or edit a Device",
+        "notFound": "No Devices found"
+      },
+      "created": "A new Device is created with identifier {{ param }}",
+      "updated": "A Device is updated with identifier {{ param }}",
+      "deleted": "A Device is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Device {{ id }}?"
+      },
+      "detail": {
+        "title": "Device"
+      },
+      "id": "Id",
+      "serial": "Serial",
+      "isProtocolEsdcs": "Is Protocol Esdcs",
+      "numberPlayedReport": "Number Played Report",
+      "sasDenomination": "Sas Denomination",
+      "isMultigame": "Is Multigame",
+      "isMultiDenomination": "Is Multi Denomination",
+      "isRetanqueo": "Is Retanqueo",
+      "state": "State",
+      "theoreticalHold": "Theoretical Hold",
+      "sasIdentifier": "Sas Identifier",
+      "creditLimit": "Credit Limit",
+      "hasHooper": "Has Hooper",
+      "coljuegosCode": "Coljuegos Code",
+      "fabricationDate": "Fabrication Date",
+      "currentToken": "Current Token",
+      "denominationTito": "Denomination Tito",
+      "endLostCommunication": "End Lost Communication",
+      "startLostCommunication": "Start Lost Communication",
+      "reportMultiplier": "Report Multiplier",
+      "nuid": "Nuid",
+      "payManualPrize": "Pay Manual Prize",
+      "manualHandpay": "Manual Handpay",
+      "manualJackpot": "Manual Jackpot",
+      "manualGameEvent": "Manual Game Event",
+      "betCode": "Bet Code",
+      "homologationIndicator": "Homologation Indicator",
+      "coljuegosModel": "Coljuegos Model",
+      "reportable": "Reportable",
+      "aftDenomination": "Aft Denomination",
+      "lastUpdateDate": "Last Update Date",
+      "enableRollover": "Enable Rollover",
+      "lastCorruptionDate": "Last Corruption Date",
+      "daftDenomination": "Daft Denomination",
+      "prizesEnabled": "Prizes Enabled",
+      "currencyTypeId": "Currency Type Id",
+      "isleId": "Isle Id",
+      "model": "Model",
+      "deviceCategory": "Device Category",
+      "deviceType": "Device Type",
+      "formulaHandpay": "Formula Handpay",
+      "formulaJackpot": "Formula Jackpot"
+    }
+  }
+}

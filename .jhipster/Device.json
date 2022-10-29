@@ -1,0 +1,201 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927195520",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "device",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "serial",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "isProtocolEsdcs",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "numberPlayedReport",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "sasDenomination",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "isMultigame",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isMultiDenomination",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isRetanqueo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "theoreticalHold",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "sasIdentifier",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "creditLimit",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "hasHooper",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "coljuegosCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "fabricationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "currentToken",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "denominationTito",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "endLostCommunication",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "startLostCommunication",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "reportMultiplier",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "nuid",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "payManualPrize",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "manualHandpay",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "manualJackpot",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "manualGameEvent",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "betCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "homologationIndicator",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "coljuegosModel",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "reportable",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "aftDenomination",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "lastUpdateDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "enableRollover",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lastCorruptionDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "daftDenomination",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "prizesEnabled",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "currencyTypeId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isleId",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Device",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "model",
+      "relationshipName": "model",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "deviceCategory",
+      "relationshipName": "deviceCategory",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "deviceType",
+      "relationshipName": "deviceType",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "formula",
+      "relationshipName": "formulaHandpay",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "formula",
+      "relationshipName": "formulaJackpot",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

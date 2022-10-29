@@ -1,0 +1,191 @@
+package co.com.ies.smol.service.criteria;
+
+import java.io.Serializable;
+import java.util.Objects;
+import org.springdoc.api.annotations.ParameterObject;
+import tech.jhipster.service.Criteria;
+import tech.jhipster.service.filter.*;
+
+/**
+ * Criteria class for the {@link co.com.ies.smol.domain.CurrencyType} entity. This class is used
+ * in {@link co.com.ies.smol.web.rest.CurrencyTypeResource} to receive all the possible filtering options from
+ * the Http GET request parameters.
+ * For example the following could be a valid request:
+ * {@code /currency-types?id.greaterThan=5&attr1.contains=something&attr2.specified=false}
+ * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
+ * fix type specific filters.
+ */
+@ParameterObject
+@SuppressWarnings("common-java:DuplicatedBlocks")
+public class CurrencyTypeCriteria implements Serializable, Criteria {
+
+    private static final long serialVersionUID = 1L;
+
+    private LongFilter id;
+
+    private StringFilter description;
+
+    private StringFilter name;
+
+    private BooleanFilter isPriority;
+
+    private StringFilter location;
+
+    private FloatFilter exchangeRate;
+
+    private Boolean distinct;
+
+    public CurrencyTypeCriteria() {}
+
+    public CurrencyTypeCriteria(CurrencyTypeCriteria other) {
+        this.id = other.id == null ? null : other.id.copy();
+        this.description = other.description == null ? null : other.description.copy();
+        this.name = other.name == null ? null : other.name.copy();
+        this.isPriority = other.isPriority == null ? null : other.isPriority.copy();
+        this.location = other.location == null ? null : other.location.copy();
+        this.exchangeRate = other.exchangeRate == null ? null : other.exchangeRate.copy();
+        this.distinct = other.distinct;
+    }
+
+    @Override
+    public CurrencyTypeCriteria copy() {
+        return new CurrencyTypeCriteria(this);
+    }
+
+    public LongFilter getId() {
+        return id;
+    }
+
+    public LongFilter id() {
+        if (id == null) {
+            id = new LongFilter();
+        }
+        return id;
+    }
+
+    public void setId(LongFilter id) {
+        this.id = id;
+    }
+
+    public StringFilter getDescription() {
+        return description;
+    }
+
+    public StringFilter description() {
+        if (description == null) {
+            description = new StringFilter();
+        }
+        return description;
+    }
+
+    public void setDescription(StringFilter description) {
+        this.description = description;
+    }
+
+    public StringFilter getName() {
+        return name;
+    }
+
+    public StringFilter name() {
+        if (name == null) {
+            name = new StringFilter();
+        }
+        return name;
+    }
+
+    public void setName(StringFilter name) {
+        this.name = name;
+    }
+
+    public BooleanFilter getIsPriority() {
+        return isPriority;
+    }
+
+    public BooleanFilter isPriority() {
+        if (isPriority == null) {
+            isPriority = new BooleanFilter();
+        }
+        return isPriority;
+    }
+
+    public void setIsPriority(BooleanFilter isPriority) {
+        this.isPriority = isPriority;
+    }
+
+    public StringFilter getLocation() {
+        return location;
+    }
+
+    public StringFilter location() {
+        if (location == null) {
+            location = new StringFilter();
+        }
+        return location;
+    }
+
+    public void setLocation(StringFilter location) {
+        this.location = location;
+    }
+
+    public FloatFilter getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public FloatFilter exchangeRate() {
+        if (exchangeRate == null) {
+            exchangeRate = new FloatFilter();
+        }
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(FloatFilter exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
+    public Boolean getDistinct() {
+        return distinct;
+    }
+
+    public void setDistinct(Boolean distinct) {
+        this.distinct = distinct;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final CurrencyTypeCriteria that = (CurrencyTypeCriteria) o;
+        return (
+            Objects.equals(id, that.id) &&
+            Objects.equals(description, that.description) &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(isPriority, that.isPriority) &&
+            Objects.equals(location, that.location) &&
+            Objects.equals(exchangeRate, that.exchangeRate) &&
+            Objects.equals(distinct, that.distinct)
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, name, isPriority, location, exchangeRate, distinct);
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+        return "CurrencyTypeCriteria{" +
+            (id != null ? "id=" + id + ", " : "") +
+            (description != null ? "description=" + description + ", " : "") +
+            (name != null ? "name=" + name + ", " : "") +
+            (isPriority != null ? "isPriority=" + isPriority + ", " : "") +
+            (location != null ? "location=" + location + ", " : "") +
+            (exchangeRate != null ? "exchangeRate=" + exchangeRate + ", " : "") +
+            (distinct != null ? "distinct=" + distinct + ", " : "") +
+            "}";
+    }
+}

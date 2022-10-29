@@ -1,0 +1,148 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-event-type-heading"
+        data-cy="EventTypeCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.eventType.home.createOrEditLabel"
+      >
+        Crear o editar Event Type
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.eventCode" for="field_eventCode">Event Code</label>
+          <input type="text" class="form-control" name="eventCode" id="field_eventCode" data-cy="eventCode" formControlName="eventCode" />
+          <div *ngIf="editForm.get('eventCode')!.invalid && (editForm.get('eventCode')!.dirty || editForm.get('eventCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('eventCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('eventCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              Este campo no puede superar más de 20 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.sasCode" for="field_sasCode">Sas Code</label>
+          <input type="text" class="form-control" name="sasCode" id="field_sasCode" data-cy="sasCode" formControlName="sasCode" />
+          <div *ngIf="editForm.get('sasCode')!.invalid && (editForm.get('sasCode')!.dirty || editForm.get('sasCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sasCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+          <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('description')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.isStorable" for="field_isStorable">Is Storable</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isStorable"
+            id="field_isStorable"
+            data-cy="isStorable"
+            formControlName="isStorable"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.isPriority" for="field_isPriority">Is Priority</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isPriority"
+            id="field_isPriority"
+            data-cy="isPriority"
+            formControlName="isPriority"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.procesador" for="field_procesador">Procesador</label>
+          <input
+            type="text"
+            class="form-control"
+            name="procesador"
+            id="field_procesador"
+            data-cy="procesador"
+            formControlName="procesador"
+          />
+          <div *ngIf="editForm.get('procesador')!.invalid && (editForm.get('procesador')!.dirty || editForm.get('procesador')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('procesador')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventType.isAlarm" for="field_isAlarm">Is Alarm</label>
+          <input type="checkbox" class="form-check" name="isAlarm" id="field_isAlarm" data-cy="isAlarm" formControlName="isAlarm" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

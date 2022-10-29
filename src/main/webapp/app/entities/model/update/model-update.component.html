@@ -1,0 +1,148 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-model-heading" data-cy="ModelCreateUpdateHeading" jhiTranslate="smolPlusTempApp.model.home.createOrEditLabel">
+        Crear o editar Model
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+          <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('code')?.errors?.required" jhiTranslate="entity.validation.required">
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('code')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('name')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.subtractBonus" for="field_subtractBonus">Subtract Bonus</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="subtractBonus"
+            id="field_subtractBonus"
+            data-cy="subtractBonus"
+            formControlName="subtractBonus"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.collectionCeil" for="field_collectionCeil">Collection Ceil</label>
+          <input
+            type="number"
+            class="form-control"
+            name="collectionCeil"
+            id="field_collectionCeil"
+            data-cy="collectionCeil"
+            formControlName="collectionCeil"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.rolloverLimit" for="field_rolloverLimit">Rollover Limit</label>
+          <input
+            type="number"
+            class="form-control"
+            name="rolloverLimit"
+            id="field_rolloverLimit"
+            data-cy="rolloverLimit"
+            formControlName="rolloverLimit"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.manufacturer" for="field_manufacturer">Manufacturer</label>
+          <select
+            class="form-control"
+            id="field_manufacturer"
+            data-cy="manufacturer"
+            name="manufacturer"
+            formControlName="manufacturer"
+            [compareWith]="compareManufacturer"
+          >
+            <option *ngIf="!editForm.get('manufacturer')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="manufacturerOption" *ngFor="let manufacturerOption of manufacturersSharedCollection">
+              {{ manufacturerOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['manufacturer'])!.invalid && (editForm.get(['manufacturer'])!.dirty || editForm.get(['manufacturer'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['manufacturer'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.model.formula" for="field_formula">Formula</label>
+          <select
+            class="form-control"
+            id="field_formula"
+            data-cy="formula"
+            name="formula"
+            formControlName="formula"
+            [compareWith]="compareFormula"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="formulaOption" *ngFor="let formulaOption of formulasSharedCollection">{{ formulaOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

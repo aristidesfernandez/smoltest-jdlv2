@@ -1,0 +1,41 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927195020",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "counter_event",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "valueCounter",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "denominationSale",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "counterCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "2"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CounterEvent",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "eventDevice",
+      "relationshipName": "eventDevice",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

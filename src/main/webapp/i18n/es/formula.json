@@ -1,0 +1,25 @@
+{
+  "smolPlusTempApp": {
+    "formula": {
+      "home": {
+        "title": "Formulas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Formula",
+        "createOrEditLabel": "Crear o editar Formula",
+        "notFound": "Ningún Formulas encontrado"
+      },
+      "created": "Un nuevo Formula ha sido creado con el identificador {{ param }}",
+      "updated": "Un Formula ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Formula ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Formula {{ id }}?"
+      },
+      "detail": {
+        "title": "Formula"
+      },
+      "id": "Id",
+      "description": "Description",
+      "expression": "Expression"
+    }
+  }
+}

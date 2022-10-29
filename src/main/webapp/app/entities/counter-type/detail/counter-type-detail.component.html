@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="counterType">
+      <h2 data-cy="counterTypeDetailsHeading"><span jhiTranslate="smolPlusTempApp.counterType.detail.title">Counter Type</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.counterCode">Counter Code</span></dt>
+        <dd>
+          <span>{{ counterType.counterCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.name">Name</span></dt>
+        <dd>
+          <span>{{ counterType.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.description">Description</span></dt>
+        <dd>
+          <span>{{ counterType.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.includedInFormula">Included In Formula</span></dt>
+        <dd>
+          <span>{{ counterType.includedInFormula }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.prize">Prize</span></dt>
+        <dd>
+          <span>{{ counterType.prize }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.category">Category</span></dt>
+        <dd>
+          <span>{{ counterType.category }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.counterType.udteWaitTime">Udte Wait Time</span></dt>
+        <dd>
+          <span>{{ counterType.udteWaitTime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/counter-type', counterType.counterCode, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,248 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-establishment-heading"
+        data-cy="EstablishmentCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.establishment.home.createOrEditLabel"
+      >
+        Crear o editar Establishment
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.liquidationTime" for="field_liquidationTime"
+            >Liquidation Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_liquidationTime"
+              data-cy="liquidationTime"
+              type="datetime-local"
+              class="form-control"
+              name="liquidationTime"
+              formControlName="liquidationTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('name')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'smolPlusTempApp.EstablishmentType.null' | translate }}</option>
+            <option *ngFor="let establishmentType of establishmentTypeValues" [value]="establishmentType">
+              {{ 'smolPlusTempApp.EstablishmentType.' + establishmentType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.neighborhood" for="field_neighborhood">Neighborhood</label>
+          <input
+            type="text"
+            class="form-control"
+            name="neighborhood"
+            id="field_neighborhood"
+            data-cy="neighborhood"
+            formControlName="neighborhood"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.address" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.coljuegosCode" for="field_coljuegosCode"
+            >Coljuegos Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="coljuegosCode"
+            id="field_coljuegosCode"
+            data-cy="coljuegosCode"
+            formControlName="coljuegosCode"
+          />
+          <div
+            *ngIf="
+              editForm.get('coljuegosCode')!.invalid && (editForm.get('coljuegosCode')!.dirty || editForm.get('coljuegosCode')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('coljuegosCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.startTime" for="field_startTime">Start Time</label>
+          <div class="d-flex">
+            <input
+              id="field_startTime"
+              data-cy="startTime"
+              type="datetime-local"
+              class="form-control"
+              name="startTime"
+              formControlName="startTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.closeTime" for="field_closeTime">Close Time</label>
+          <div class="d-flex">
+            <input
+              id="field_closeTime"
+              data-cy="closeTime"
+              type="datetime-local"
+              class="form-control"
+              name="closeTime"
+              formControlName="closeTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.longitude" for="field_longitude">Longitude</label>
+          <input type="number" class="form-control" name="longitude" id="field_longitude" data-cy="longitude" formControlName="longitude" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.latitude" for="field_latitude">Latitude</label>
+          <input type="number" class="form-control" name="latitude" id="field_latitude" data-cy="latitude" formControlName="latitude" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.mercantileRegistration" for="field_mercantileRegistration"
+            >Mercantile Registration</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="mercantileRegistration"
+            id="field_mercantileRegistration"
+            data-cy="mercantileRegistration"
+            formControlName="mercantileRegistration"
+          />
+          <div
+            *ngIf="
+              editForm.get('mercantileRegistration')!.invalid &&
+              (editForm.get('mercantileRegistration')!.dirty || editForm.get('mercantileRegistration')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('mercantileRegistration')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              Este campo no puede superar más de 100 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.operator" for="field_operator">Operator</label>
+          <select
+            class="form-control"
+            id="field_operator"
+            data-cy="operator"
+            name="operator"
+            formControlName="operator"
+            [compareWith]="compareOperator"
+          >
+            <option *ngIf="!editForm.get('operator')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="operatorOption" *ngFor="let operatorOption of operatorsSharedCollection">{{ operatorOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['operator'])!.invalid && (editForm.get(['operator'])!.dirty || editForm.get(['operator'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['operator'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.establishment.municipality" for="field_municipality">Municipality</label>
+          <select
+            class="form-control"
+            id="field_municipality"
+            data-cy="municipality"
+            name="municipality"
+            formControlName="municipality"
+            [compareWith]="compareMunicipality"
+          >
+            <option *ngIf="!editForm.get('municipality')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="municipalityOption" *ngFor="let municipalityOption of municipalitiesSharedCollection">
+              {{ municipalityOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['municipality'])!.invalid && (editForm.get(['municipality'])!.dirty || editForm.get(['municipality'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['municipality'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

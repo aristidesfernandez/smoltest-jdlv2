@@ -1,0 +1,27 @@
+{
+  "smolPlusTempApp": {
+    "counterEvent": {
+      "home": {
+        "title": "Counter Events",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Counter Event",
+        "createOrEditLabel": "Create or edit a Counter Event",
+        "notFound": "No Counter Events found"
+      },
+      "created": "A new Counter Event is created with identifier {{ param }}",
+      "updated": "A Counter Event is updated with identifier {{ param }}",
+      "deleted": "A Counter Event is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Counter Event {{ id }}?"
+      },
+      "detail": {
+        "title": "Counter Event"
+      },
+      "id": "Id",
+      "valueCounter": "Value Counter",
+      "denominationSale": "Denomination Sale",
+      "counterCode": "Counter Code",
+      "eventDevice": "Event Device"
+    }
+  }
+}

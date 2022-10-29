@@ -1,0 +1,150 @@
+<div>
+  <h2 id="page-heading" data-cy="EventTypeHeading">
+    <span jhiTranslate="smolPlusTempApp.eventType.home.title">Event Types</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.eventType.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-event-type"
+        [routerLink]="['/event-type/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.eventType.home.createLabel"> Crear nuevo Event Type </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="eventTypes?.length === 0">
+    <span jhiTranslate="smolPlusTempApp.eventType.home.notFound">Ningún Event Types encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="eventTypes && eventTypes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="eventCode">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.eventCode">Event Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sasCode">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.sasCode">Sas Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isStorable">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.isStorable">Is Storable</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isPriority">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.isPriority">Is Priority</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="procesador">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.procesador">Procesador</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isAlarm">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.eventType.isAlarm">Is Alarm</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eventType of eventTypes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/event-type', eventType.id, 'view']">{{ eventType.id }}</a>
+          </td>
+          <td>{{ eventType.eventCode }}</td>
+          <td>{{ eventType.sasCode }}</td>
+          <td>{{ eventType.description }}</td>
+          <td>{{ eventType.isStorable }}</td>
+          <td>{{ eventType.isPriority }}</td>
+          <td>{{ eventType.procesador }}</td>
+          <td>{{ eventType.isAlarm }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/event-type', eventType.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/event-type', eventType.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(eventType)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="eventTypes && eventTypes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

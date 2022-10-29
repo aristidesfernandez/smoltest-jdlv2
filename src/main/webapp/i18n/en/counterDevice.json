@@ -1,0 +1,30 @@
+{
+  "smolPlusTempApp": {
+    "counterDevice": {
+      "home": {
+        "title": "Counter Devices",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Counter Device",
+        "createOrEditLabel": "Create or edit a Counter Device",
+        "notFound": "No Counter Devices found"
+      },
+      "created": "A new Counter Device is created with identifier {{ param }}",
+      "updated": "A Counter Device is updated with identifier {{ param }}",
+      "deleted": "A Counter Device is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Counter Device {{ id }}?"
+      },
+      "detail": {
+        "title": "Counter Device"
+      },
+      "id": "Id",
+      "value": "Value",
+      "rolloverValue": "Rollover Value",
+      "creditSale": "Credit Sale",
+      "manualCounter": "Manual Counter",
+      "manualMultiplier": "Manual Multiplier",
+      "decimalsManualCounter": "Decimals Manual Counter",
+      "device": "Device"
+    }
+  }
+}

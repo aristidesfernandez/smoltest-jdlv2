@@ -1,0 +1,52 @@
+import dayjs from 'dayjs/esm';
+import { IModel } from 'app/entities/model/model.model';
+import { IDeviceCategory } from 'app/entities/device-category/device-category.model';
+import { IDeviceType } from 'app/entities/device-type/device-type.model';
+import { IFormula } from 'app/entities/formula/formula.model';
+
+export interface IDevice {
+  id: string;
+  serial?: string | null;
+  isProtocolEsdcs?: boolean | null;
+  numberPlayedReport?: number | null;
+  sasDenomination?: number | null;
+  isMultigame?: boolean | null;
+  isMultiDenomination?: boolean | null;
+  isRetanqueo?: boolean | null;
+  state?: string | null;
+  theoreticalHold?: number | null;
+  sasIdentifier?: number | null;
+  creditLimit?: number | null;
+  hasHooper?: boolean | null;
+  coljuegosCode?: string | null;
+  fabricationDate?: dayjs.Dayjs | null;
+  currentToken?: number | null;
+  denominationTito?: number | null;
+  endLostCommunication?: dayjs.Dayjs | null;
+  startLostCommunication?: dayjs.Dayjs | null;
+  reportMultiplier?: number | null;
+  nuid?: string | null;
+  payManualPrize?: boolean | null;
+  manualHandpay?: boolean | null;
+  manualJackpot?: boolean | null;
+  manualGameEvent?: boolean | null;
+  betCode?: string | null;
+  homologationIndicator?: boolean | null;
+  coljuegosModel?: string | null;
+  reportable?: boolean | null;
+  aftDenomination?: number | null;
+  lastUpdateDate?: dayjs.Dayjs | null;
+  enableRollover?: boolean | null;
+  lastCorruptionDate?: dayjs.Dayjs | null;
+  daftDenomination?: number | null;
+  prizesEnabled?: boolean | null;
+  currencyTypeId?: number | null;
+  isleId?: number | null;
+  model?: Pick<IModel, 'id'> | null;
+  deviceCategory?: Pick<IDeviceCategory, 'id'> | null;
+  deviceType?: Pick<IDeviceType, 'id'> | null;
+  formulaHandpay?: Pick<IFormula, 'id'> | null;
+  formulaJackpot?: Pick<IFormula, 'id'> | null;
+}
+
+export type NewDevice = Omit<IDevice, 'id'> & { id: null };

@@ -1,0 +1,126 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-device-interface-heading"
+        data-cy="DeviceInterfaceCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.deviceInterface.home.createOrEditLabel"
+      >
+        Crear o editar Device Interface
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.startDate" for="field_startDate">Start Date</label>
+          <div class="d-flex">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="datetime-local"
+              class="form-control"
+              name="startDate"
+              formControlName="startDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.endDate" for="field_endDate">End Date</label>
+          <div class="d-flex">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="datetime-local"
+              class="form-control"
+              name="endDate"
+              formControlName="endDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.establishmentId" for="field_establishmentId"
+            >Establishment Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="establishmentId"
+            id="field_establishmentId"
+            data-cy="establishmentId"
+            formControlName="establishmentId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.state" for="field_state">State</label>
+          <select class="form-control" name="state" formControlName="state" id="field_state" data-cy="state">
+            <option [ngValue]="null">{{ 'smolPlusTempApp.DeviceInterfaceStatus.null' | translate }}</option>
+            <option *ngFor="let deviceInterfaceStatus of deviceInterfaceStatusValues" [value]="deviceInterfaceStatus">
+              {{ 'smolPlusTempApp.DeviceInterfaceStatus.' + deviceInterfaceStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.device" for="field_device">Device</label>
+          <select
+            class="form-control"
+            id="field_device"
+            data-cy="device"
+            name="device"
+            formControlName="device"
+            [compareWith]="compareDevice"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="deviceOption" *ngFor="let deviceOption of devicesSharedCollection">{{ deviceOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.deviceInterface.interfaceBoard" for="field_interfaceBoard"
+            >Interface Board</label
+          >
+          <select
+            class="form-control"
+            id="field_interfaceBoard"
+            data-cy="interfaceBoard"
+            name="interfaceBoard"
+            formControlName="interfaceBoard"
+            [compareWith]="compareInterfaceBoard"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="interfaceBoardOption" *ngFor="let interfaceBoardOption of interfaceBoardsSharedCollection">
+              {{ interfaceBoardOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

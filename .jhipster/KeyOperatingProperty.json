@@ -1,0 +1,30 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927200820",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "key_operating_property",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "property",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "32"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "KeyOperatingProperty",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

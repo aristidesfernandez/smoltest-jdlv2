@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="operationalPropertiesEstablishment">
+      <h2 data-cy="operationalPropertiesEstablishmentDetailsHeading">
+        <span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.detail.title">Operational Properties Establishment</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ operationalPropertiesEstablishment.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.value">Value</span></dt>
+        <dd>
+          <span>{{ operationalPropertiesEstablishment.value }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.keyOperatingProperty">Key Operating Property</span></dt>
+        <dd>
+          <div *ngIf="operationalPropertiesEstablishment.keyOperatingProperty">
+            <a [routerLink]="['/key-operating-property', operationalPropertiesEstablishment.keyOperatingProperty.id, 'view']">{{
+              operationalPropertiesEstablishment.keyOperatingProperty.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operationalPropertiesEstablishment.establishment">Establishment</span></dt>
+        <dd>
+          <div *ngIf="operationalPropertiesEstablishment.establishment">
+            <a [routerLink]="['/establishment', operationalPropertiesEstablishment.establishment.id, 'view']">{{
+              operationalPropertiesEstablishment.establishment.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/operational-properties-establishment', operationalPropertiesEstablishment.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

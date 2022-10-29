@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="eventType">
+      <h2 data-cy="eventTypeDetailsHeading"><span jhiTranslate="smolPlusTempApp.eventType.detail.title">Event Type</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.id">Id</span></dt>
+        <dd>
+          <span>{{ eventType.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.eventCode">Event Code</span></dt>
+        <dd>
+          <span>{{ eventType.eventCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.sasCode">Sas Code</span></dt>
+        <dd>
+          <span>{{ eventType.sasCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.description">Description</span></dt>
+        <dd>
+          <span>{{ eventType.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.isStorable">Is Storable</span></dt>
+        <dd>
+          <span>{{ eventType.isStorable }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.isPriority">Is Priority</span></dt>
+        <dd>
+          <span>{{ eventType.isPriority }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.procesador">Procesador</span></dt>
+        <dd>
+          <span>{{ eventType.procesador }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventType.isAlarm">Is Alarm</span></dt>
+        <dd>
+          <span>{{ eventType.isAlarm }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/event-type', eventType.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

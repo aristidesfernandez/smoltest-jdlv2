@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-municipality-heading"
+        data-cy="MunicipalityCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.municipality.home.createOrEditLabel"
+      >
+        Crear o editar Municipality
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.municipality.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.municipality.code" for="field_code">Code</label>
+          <input type="text" class="form-control" name="code" id="field_code" data-cy="code" formControlName="code" />
+          <div *ngIf="editForm.get('code')!.invalid && (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('code')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 25 }"
+            >
+              Este campo no puede superar más de 25 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.municipality.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('name')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.municipality.daneCode" for="field_daneCode">Dane Code</label>
+          <input type="text" class="form-control" name="daneCode" id="field_daneCode" data-cy="daneCode" formControlName="daneCode" />
+          <div *ngIf="editForm.get('daneCode')!.invalid && (editForm.get('daneCode')!.dirty || editForm.get('daneCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('daneCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('daneCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 25 }"
+            >
+              Este campo no puede superar más de 25 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.municipality.province" for="field_province">Province</label>
+          <select
+            class="form-control"
+            id="field_province"
+            data-cy="province"
+            name="province"
+            formControlName="province"
+            [compareWith]="compareProvince"
+          >
+            <option *ngIf="!editForm.get('province')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="provinceOption" *ngFor="let provinceOption of provincesSharedCollection">{{ provinceOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['province'])!.invalid && (editForm.get(['province'])!.dirty || editForm.get(['province'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['province'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

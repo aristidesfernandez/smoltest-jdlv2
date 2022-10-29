@@ -1,0 +1,84 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927194620",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "establishment",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "liquidationTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "EstablishmentType",
+      "fieldValues": "CASINO,RUTA"
+    },
+    {
+      "fieldName": "neighborhood",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "coljuegosCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "closeTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "mercantileRegistration",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Establishment",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "operator",
+      "relationshipName": "operator",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "municipality",
+      "relationshipName": "municipality",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

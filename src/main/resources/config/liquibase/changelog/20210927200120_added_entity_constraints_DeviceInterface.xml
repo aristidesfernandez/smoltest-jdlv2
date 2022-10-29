@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity DeviceInterface.
+    -->
+    <changeSet id="20210927200120-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="device_interface"
+                                 constraintName="fk_device_interface__device_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="device"/>
+
+        <addForeignKeyConstraint baseColumnNames="interface_board_id"
+                                 baseTableName="device_interface"
+                                 constraintName="fk_device_interface__interface_board_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="interface_board"/>
+    </changeSet>
+</databaseChangeLog>

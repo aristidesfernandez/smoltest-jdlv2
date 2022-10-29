@@ -1,0 +1,29 @@
+{
+  "smolPlusTempApp": {
+    "counterType": {
+      "home": {
+        "title": "Counter Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Counter Type",
+        "createOrEditLabel": "Create or edit a Counter Type",
+        "notFound": "No Counter Types found"
+      },
+      "created": "A new Counter Type is created with identifier {{ param }}",
+      "updated": "A Counter Type is updated with identifier {{ param }}",
+      "deleted": "A Counter Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Counter Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Counter Type"
+      },
+      "counterCode": "Counter Code",
+      "name": "Name",
+      "description": "Description",
+      "includedInFormula": "Included In Formula",
+      "prize": "Prize",
+      "category": "Category",
+      "udteWaitTime": "Udte Wait Time"
+    }
+  }
+}

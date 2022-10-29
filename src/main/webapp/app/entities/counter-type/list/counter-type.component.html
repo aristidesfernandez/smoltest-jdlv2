@@ -1,0 +1,143 @@
+<div>
+  <h2 id="page-heading" data-cy="CounterTypeHeading">
+    <span jhiTranslate="smolPlusTempApp.counterType.home.title">Counter Types</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.counterType.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-counter-type"
+        [routerLink]="['/counter-type/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smolPlusTempApp.counterType.home.createLabel"> Crear nuevo Counter Type </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="counterTypes?.length === 0">
+    <span jhiTranslate="smolPlusTempApp.counterType.home.notFound">Ningún Counter Types encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="counterTypes && counterTypes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="counterCode">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.counterCode">Counter Code</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="includedInFormula">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.includedInFormula">Included In Formula</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prize">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.prize">Prize</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="category">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.category">Category</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="udteWaitTime">
+            <div class="d-flex">
+              <span jhiTranslate="smolPlusTempApp.counterType.udteWaitTime">Udte Wait Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let counterType of counterTypes; trackBy: trackCounterCode" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/counter-type', counterType.counterCode, 'view']">{{ counterType.counterCode }}</a>
+          </td>
+          <td>{{ counterType.name }}</td>
+          <td>{{ counterType.description }}</td>
+          <td>{{ counterType.includedInFormula }}</td>
+          <td>{{ counterType.prize }}</td>
+          <td>{{ counterType.category }}</td>
+          <td>{{ counterType.udteWaitTime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/counter-type', counterType.counterCode, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/counter-type', counterType.counterCode, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(counterType)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="counterTypes && counterTypes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="formula">
+      <h2 data-cy="formulaDetailsHeading"><span jhiTranslate="smolPlusTempApp.formula.detail.title">Formula</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.formula.id">Id</span></dt>
+        <dd>
+          <span>{{ formula.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.formula.description">Description</span></dt>
+        <dd>
+          <span>{{ formula.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.formula.expression">Expression</span></dt>
+        <dd>
+          <span>{{ formula.expression }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/formula', formula.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

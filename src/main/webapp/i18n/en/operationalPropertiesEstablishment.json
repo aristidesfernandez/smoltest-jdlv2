@@ -1,0 +1,26 @@
+{
+  "smolPlusTempApp": {
+    "operationalPropertiesEstablishment": {
+      "home": {
+        "title": "Operational Properties Establishments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Operational Properties Establishment",
+        "createOrEditLabel": "Create or edit a Operational Properties Establishment",
+        "notFound": "No Operational Properties Establishments found"
+      },
+      "created": "A new Operational Properties Establishment is created with identifier {{ param }}",
+      "updated": "A Operational Properties Establishment is updated with identifier {{ param }}",
+      "deleted": "A Operational Properties Establishment is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Operational Properties Establishment {{ id }}?"
+      },
+      "detail": {
+        "title": "Operational Properties Establishment"
+      },
+      "id": "ID",
+      "value": "Value",
+      "keyOperatingProperty": "Key Operating Property",
+      "establishment": "Establishment"
+    }
+  }
+}

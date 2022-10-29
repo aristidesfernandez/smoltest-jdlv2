@@ -1,0 +1,314 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName smolPlusTemp
+    blueprints []
+    buildTool gradle
+    clientFramework angularX
+    clientPackageManager npm
+    clientTheme sketchy
+    clientThemeVariant dark
+    creationTimestamp 1632771860714
+    databaseType sql
+    devDatabaseType h2Disk
+    dtoSuffix DTO
+    enableGradleEnterprise false
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    gradleEnterpriseHost ""
+    jhiPrefix jhi
+    jhipsterVersion "7.9.3"
+    jwtSecretKey "NDViZGU0ZGQyMTY3YzEyNzY0MWNjMDVmM2E5MzE2MGM1Y2ViMmVhYzZiNzM4YzI4OWViOGQyZjFjNDg1OTFmNjRiOWIxMzE3NGRjNjUxMWI5ZDhkMDQzMTE3M2UzNDM5MTgzZGVjNGUzODY5NmFmZjA4ZjU0Yjc2ZTFhMTMxYTk="
+    languages [es, en]
+    messageBroker false
+    nativeLanguage es
+    otherModules []
+    packageName co.com.ies.smol
+    prodDatabaseType postgresql
+    reactive false
+    searchEngine false
+    serverPort 8080
+    serviceDiscoveryType no
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks [gatling, cucumber]
+    websocket spring-websocket
+    withAdminUi true
+  }
+
+entities EventType, Establishment, EventDevice, DeviceEstablishment, CounterType, CounterEvent, DeviceType, DeviceCategory, Isle, CurrencyType, Device,
+  CounterDevice, Manufacturer, Formula, Model, InterfaceBoard, DeviceInterface, Operator, OperationalPropertiesEstablishment, UserAccess, Municipality, Province, Country, KeyOperatingProperty 
+}
+
+entity EventType {
+  id Long	
+  eventCode String maxlength(20) required
+  sasCode String   maxlength(50)
+  description String maxlength(100)
+  isStorable Boolean 
+  isPriority Boolean 
+  procesador String maxlength(100)
+  isAlarm Boolean  	
+}
+
+entity Establishment {
+  id Long
+  liquidationTime ZonedDateTime
+  name String maxlength(100) 
+  type EstablishmentType maxlength(25) required
+  neighborhood String maxlength(25) 
+  address String maxlength(25) 
+  coljuegosCode String maxlength(100) required
+  startTime	ZonedDateTime required
+  closeTime	ZonedDateTime required
+  longitude Float
+  latitude Float 
+  mercantileRegistration String maxlength(100)
+}
+
+entity UserAccess {
+  id Long
+  username String required  maxlength(25)
+  ipAddress String required  maxlength(20)
+  registrationAt ZonedDateTime required
+}
+
+entity EventDevice {
+  id UUID
+  createdAt ZonedDateTime required
+  theoreticalPercentage Boolean 
+  moneyDenomination Double 	
+}
+
+entity DeviceEstablishment {
+  id UUID	
+  registrationAt ZonedDateTime required  
+  departureAt ZonedDateTime 
+  deviceNumber Integer 
+  consecutiveDevice Integer
+  establishmentId Integer
+  negativeAward Float 
+}
+
+entity CounterType { 
+  @Id counterCode String maxlength(2)
+  name String maxlength(50)
+  description String maxlength(100)
+  includedInFormula Boolean
+  prize Boolean 
+  category String maxlength(100)
+  udteWaitTime Integer 
+}
+
+entity CounterEvent {
+  id UUID
+  valueCounter Long
+  denominationSale Float 	
+  counterCode String maxlength(2) required
+}
+
+entity DeviceType {
+  id Long
+  description String maxlength(100)
+  name String maxlength(50)
+}
+
+entity DeviceCategory {
+  id Long
+  description String maxlength(100)
+  name String maxlength(50)
+}
+
+entity Isle {
+  id Long 
+  description String maxlength(100)
+  name String maxlength(50)
+}
+
+entity CurrencyType {
+  id Long  
+  description String maxlength(100)
+  name String maxlength(50)
+  isPriority Boolean
+  location String  maxlength(50)
+  exchangeRate Float
+}
+
+entity Device {
+  id UUID
+  serial String maxlength(50) required 
+  isProtocolEsdcs Boolean
+  numberPlayedReport Integer
+  sasDenomination BigDecimal
+  isMultigame Boolean
+  isMultiDenomination Boolean
+  isRetanqueo Boolean
+  state String maxlength(30) 
+  theoreticalHold BigDecimal
+  sasIdentifier Integer
+  creditLimit Long
+  hasHooper Boolean
+  coljuegosCode String maxlength(50)
+  fabricationDate LocalDate
+  currentToken BigDecimal
+  denominationTito BigDecimal
+  endLostCommunication ZonedDateTime
+  startLostCommunication ZonedDateTime
+  reportMultiplier BigDecimal
+  nuid String
+  payManualPrize Boolean
+  manualHandpay Boolean
+  manualJackpot Boolean
+  manualGameEvent Boolean
+  betCode String
+  homologationIndicator Boolean 
+  coljuegosModel String maxlength(50)
+  reportable Boolean
+  aftDenomination BigDecimal
+  lastUpdateDate ZonedDateTime
+  enableRollover Boolean
+  lastCorruptionDate ZonedDateTime
+  daftDenomination BigDecimal
+  prizesEnabled Boolean
+  currencyTypeId Integer
+  isleId Integer
+}
+
+entity CounterDevice {
+  id UUID
+  value	BigDecimal
+  rolloverValue	BigDecimal
+  creditSale BigDecimal
+  manualCounter	Boolean
+  manualMultiplier BigDecimal 
+  decimalsManualCounter	Boolean
+}
+
+entity Manufacturer {
+  id Long 
+  code String maxlength(50)
+  name String maxlength(50)
+}
+
+entity Formula {
+  id Long  
+  description String maxlength(100)
+  expression String maxlength(50)
+}
+
+entity Model {
+  id Long 
+  code String maxlength(50) required 
+  name String maxlength(50)
+  subtractBonus	Boolean
+  collectionCeil BigDecimal
+  rolloverLimit	BigDecimal
+}
+
+entity InterfaceBoard {
+  id Long 
+  isAssigned Boolean
+  ipAddress String maxlength(25)
+  hash String
+  serial String maxlength(50)
+  version String maxlength(10)
+  port String maxlength(10)
+}
+
+enum DeviceInterfaceStatus {
+  STOCK,
+  OPERATION,
+  MAINTENANCE  
+}
+
+entity DeviceInterface {
+  id Long 
+  startDate	ZonedDateTime
+  endDate ZonedDateTime
+  establishmentId Integer
+  state DeviceInterfaceStatus
+}
+
+entity Operator {
+  id Long
+  permitDescription String maxlength(50)
+  startDate	ZonedDateTime
+  endDate ZonedDateTime
+  nit String maxlength(50)
+  contractNumber String maxlength(50)
+  companyName	String
+  brand String maxlength(50)
+}
+
+entity KeyOperatingProperty {
+  id Long
+  description String 
+  property String maxlength(32)
+}
+
+entity OperationalPropertiesEstablishment {
+  value String
+}
+
+enum EstablishmentType {
+  CASINO,
+  RUTA
+}
+
+entity Municipality {
+  id Long
+  code String maxlength(25) 
+  name String maxlength(50)
+  daneCode String maxlength(25) required
+}
+
+entity Province {
+  id Long  
+  code String maxlength(25) 
+  name String maxlength(50)
+  daneCode String maxlength(25)
+  phoneId String maxlength(15)
+}
+
+entity Country {
+  id Long  
+  code String maxlength(25) 
+  name String maxlength(50)
+  identifier String maxlength(20)
+}
+
+relationship ManyToOne {
+  EventDevice{deviceEstablishment required} to DeviceEstablishment 
+  EventDevice{eventType required} to EventType 
+  DeviceEstablishment{device} to Device 
+  CounterEvent{eventDevice required} to EventDevice 
+  CounterDevice{device required} to Device 
+  Model{manufacturer required} to Manufacturer 
+  Model{formula} to Formula 
+  DeviceInterface{device} to Device
+  DeviceInterface{interfaceBoard} to InterfaceBoard
+  Device{model required} to Model  
+  Device{deviceCategory required} to DeviceCategory 
+  Device{deviceType required} to DeviceType 
+  Device{formulaHandpay} to Formula 
+  Device{formulaJackpot} to Formula 
+  Establishment{operator required} to Operator
+  Establishment{municipality required} to Municipality
+  Operator{municipality required} to Municipality
+  Municipality{province required} to Province
+  Province{country required} to Country
+  OperationalPropertiesEstablishment{keyOperatingProperty required} to KeyOperatingProperty
+  OperationalPropertiesEstablishment{establishment required} to Establishment
+}
+
+service all with serviceImpl
+dto all with mapstruct
+paginate all with pagination
+filter all
+
+
+
+

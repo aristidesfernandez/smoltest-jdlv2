@@ -1,0 +1,138 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-event-device-heading"
+        data-cy="EventDeviceCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.eventDevice.home.createOrEditLabel"
+      >
+        Crear o editar Event Device
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventDevice.id" for="field_id">Id</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventDevice.createdAt" for="field_createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventDevice.theoreticalPercentage" for="field_theoreticalPercentage"
+            >Theoretical Percentage</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="theoreticalPercentage"
+            id="field_theoreticalPercentage"
+            data-cy="theoreticalPercentage"
+            formControlName="theoreticalPercentage"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventDevice.moneyDenomination" for="field_moneyDenomination"
+            >Money Denomination</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="moneyDenomination"
+            id="field_moneyDenomination"
+            data-cy="moneyDenomination"
+            formControlName="moneyDenomination"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventDevice.deviceEstablishment" for="field_deviceEstablishment"
+            >Device Establishment</label
+          >
+          <select
+            class="form-control"
+            id="field_deviceEstablishment"
+            data-cy="deviceEstablishment"
+            name="deviceEstablishment"
+            formControlName="deviceEstablishment"
+            [compareWith]="compareDeviceEstablishment"
+          >
+            <option *ngIf="!editForm.get('deviceEstablishment')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="deviceEstablishmentOption" *ngFor="let deviceEstablishmentOption of deviceEstablishmentsSharedCollection">
+              {{ deviceEstablishmentOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['deviceEstablishment'])!.invalid &&
+            (editForm.get(['deviceEstablishment'])!.dirty || editForm.get(['deviceEstablishment'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['deviceEstablishment'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.eventDevice.eventType" for="field_eventType">Event Type</label>
+          <select
+            class="form-control"
+            id="field_eventType"
+            data-cy="eventType"
+            name="eventType"
+            formControlName="eventType"
+            [compareWith]="compareEventType"
+          >
+            <option *ngIf="!editForm.get('eventType')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="eventTypeOption" *ngFor="let eventTypeOption of eventTypesSharedCollection">{{ eventTypeOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['eventType'])!.invalid && (editForm.get(['eventType'])!.dirty || editForm.get(['eventType'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['eventType'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

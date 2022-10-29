@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="operator">
+      <h2 data-cy="operatorDetailsHeading"><span jhiTranslate="smolPlusTempApp.operator.detail.title">Operator</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.operator.id">Id</span></dt>
+        <dd>
+          <span>{{ operator.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.permitDescription">Permit Description</span></dt>
+        <dd>
+          <span>{{ operator.permitDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ operator.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ operator.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.nit">Nit</span></dt>
+        <dd>
+          <span>{{ operator.nit }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.contractNumber">Contract Number</span></dt>
+        <dd>
+          <span>{{ operator.contractNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.companyName">Company Name</span></dt>
+        <dd>
+          <span>{{ operator.companyName }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.brand">Brand</span></dt>
+        <dd>
+          <span>{{ operator.brand }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.operator.municipality">Municipality</span></dt>
+        <dd>
+          <div *ngIf="operator.municipality">
+            <a [routerLink]="['/municipality', operator.municipality.id, 'view']">{{ operator.municipality.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/operator', operator.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

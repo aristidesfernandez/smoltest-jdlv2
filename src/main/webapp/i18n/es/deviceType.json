@@ -1,0 +1,25 @@
+{
+  "smolPlusTempApp": {
+    "deviceType": {
+      "home": {
+        "title": "Device Types",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Device Type",
+        "createOrEditLabel": "Crear o editar Device Type",
+        "notFound": "Ningún Device Types encontrado"
+      },
+      "created": "Un nuevo Device Type ha sido creado con el identificador {{ param }}",
+      "updated": "Un Device Type ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Device Type ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Device Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Device Type"
+      },
+      "id": "Id",
+      "description": "Description",
+      "name": "Name"
+    }
+  }
+}

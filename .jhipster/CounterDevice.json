@@ -1,0 +1,51 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927195620",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "counter_device",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "rolloverValue",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "creditSale",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "manualCounter",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "manualMultiplier",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "decimalsManualCounter",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CounterDevice",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "device",
+      "relationshipName": "device",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

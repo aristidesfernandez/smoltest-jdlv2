@@ -1,0 +1,25 @@
+{
+  "smolPlusTempApp": {
+    "isle": {
+      "home": {
+        "title": "Isles",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Isle",
+        "createOrEditLabel": "Crear o editar Isle",
+        "notFound": "Ningún Isles encontrado"
+      },
+      "created": "Un nuevo Isle ha sido creado con el identificador {{ param }}",
+      "updated": "Un Isle ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Isle ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Isle {{ id }}?"
+      },
+      "detail": {
+        "title": "Isle"
+      },
+      "id": "Id",
+      "description": "Description",
+      "name": "Name"
+    }
+  }
+}

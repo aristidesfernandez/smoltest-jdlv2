@@ -1,0 +1,131 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-counter-device-heading"
+        data-cy="CounterDeviceCreateUpdateHeading"
+        jhiTranslate="smolPlusTempApp.counterDevice.home.createOrEditLabel"
+      >
+        Crear o editar Counter Device
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.id" for="field_id">Id</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.value" for="field_value">Value</label>
+          <input type="number" class="form-control" name="value" id="field_value" data-cy="value" formControlName="value" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.rolloverValue" for="field_rolloverValue"
+            >Rollover Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="rolloverValue"
+            id="field_rolloverValue"
+            data-cy="rolloverValue"
+            formControlName="rolloverValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.creditSale" for="field_creditSale">Credit Sale</label>
+          <input
+            type="number"
+            class="form-control"
+            name="creditSale"
+            id="field_creditSale"
+            data-cy="creditSale"
+            formControlName="creditSale"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.manualCounter" for="field_manualCounter"
+            >Manual Counter</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="manualCounter"
+            id="field_manualCounter"
+            data-cy="manualCounter"
+            formControlName="manualCounter"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.manualMultiplier" for="field_manualMultiplier"
+            >Manual Multiplier</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="manualMultiplier"
+            id="field_manualMultiplier"
+            data-cy="manualMultiplier"
+            formControlName="manualMultiplier"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.decimalsManualCounter" for="field_decimalsManualCounter"
+            >Decimals Manual Counter</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="decimalsManualCounter"
+            id="field_decimalsManualCounter"
+            data-cy="decimalsManualCounter"
+            formControlName="decimalsManualCounter"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.counterDevice.device" for="field_device">Device</label>
+          <select
+            class="form-control"
+            id="field_device"
+            data-cy="device"
+            name="device"
+            formControlName="device"
+            [compareWith]="compareDevice"
+          >
+            <option *ngIf="!editForm.get('device')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="deviceOption" *ngFor="let deviceOption of devicesSharedCollection">{{ deviceOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['device'])!.invalid && (editForm.get(['device'])!.dirty || editForm.get(['device'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['device'])?.errors?.required" jhiTranslate="entity.validation.required">
+            Este campo es obligatorio.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

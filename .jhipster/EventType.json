@@ -1,0 +1,56 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927194520",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "event_type",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "eventCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "sasCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "isStorable",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isPriority",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "procesador",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "isAlarm",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "EventType",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,48 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927200120",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "device_interface",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "establishmentId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "DeviceInterfaceStatus",
+      "fieldValues": "STOCK,OPERATION,MAINTENANCE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DeviceInterface",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "device",
+      "relationshipName": "device",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "interfaceBoard",
+      "relationshipName": "interfaceBoard",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,51 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927194820",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "device_establishment",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "registrationAt",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "departureAt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "deviceNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "consecutiveDevice",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "establishmentId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "negativeAward",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DeviceEstablishment",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "device",
+      "relationshipName": "device",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

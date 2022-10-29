@@ -1,0 +1,418 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName smolPlusTemp
+    blueprints []
+    buildTool gradle
+    clientFramework angularX
+    clientPackageManager npm
+    clientTheme sketchy
+    clientThemeVariant dark
+    creationTimestamp 1632771860714
+    databaseType sql
+    devDatabaseType h2Disk
+    dtoSuffix DTO
+    enableGradleEnterprise false
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    gradleEnterpriseHost ""
+    jhiPrefix jhi
+    jhipsterVersion "7.9.3"
+    jwtSecretKey "NDViZGU0ZGQyMTY3YzEyNzY0MWNjMDVmM2E5MzE2MGM1Y2ViMmVhYzZiNzM4YzI4OWViOGQyZjFjNDg1OTFmNjRiOWIxMzE3NGRjNjUxMWI5ZDhkMDQzMTE3M2UzNDM5MTgzZGVjNGUzODY5NmFmZjA4ZjU0Yjc2ZTFhMTMxYTk="
+    languages [es, en]
+    messageBroker false
+    nativeLanguage es
+    otherModules []
+    packageName co.com.ies.smol
+    prodDatabaseType postgresql
+    reactive false
+    searchEngine false
+    serverPort 8080
+    serviceDiscoveryType no
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks [gatling, cucumber]
+    websocket spring-websocket
+    withAdminUi true
+  }
+
+entities EventType, Establishment, EventDevice, DeviceEstablishment, CounterType, CounterEvent, DeviceType, DeviceCategory, Island, CurrencyType, Device,
+  CounterDevice, Manufacturer, Formula, Model, Interface, Operator, OperationalPropertiesEstablishment
+}
+
+entity EventType {
+	id Long // (int 2) small serial	
+	eventCode String required
+  sasCode String  
+	description String 
+	isStorable Boolean 
+	isPriority Boolean 
+	procesador String  
+	isAlarm Boolean  	
+}
+
+enum EstablishmentType {
+  CASINO,
+  RUTA
+}
+
+entity Establishment {
+  id Integer // int 4
+  liquidationTime	ZonedDateTime // estableciento tiene  --->  establecimiento
+  name String //---> establecimiento ok
+  type EstablishmentType
+  //municipalityCode String //fk--> uuid //--->establecimiento ok aun no esta
+  //idOperator int2 //fk--> int //---> establecimiento ok
+  neighborhood String //---> establecimiento ok
+  address	String //---> establecimiento ok
+  coljuegosCode String // PREGUNTAR //---> establecimiento ok wagner
+  closeTime	ZonedDateTime //---> establecimiento ok wagner
+  startTime	ZonedDateTime//---> establecimiento ok wagner
+  activityType String //estableciento//---> ok wagner
+  longitude Float//---> estableciento  //---> ok wagner
+  latitude Float //---> estableciento //---> ok wagner
+  mercantileRegistration String//---> estableciento
+}
+
+entity EventDevice {
+	id uuid
+	//idEstablishment int4 //fk   esta es con el dispositivo casino
+	//idEventType int  // (int 2) small int fk
+	createdAt ZonedDateTime // sin zona horaria y establecer UTC, timestamp aumentar precision (pendiente por validar precision)
+	theoreticalPercentage Boolean 
+	moneyDenomination Double 	
+}
+
+// aca si seria casino o establecimiento --> establecimiento 
+entity DeviceEstablishment {
+	id uuid	
+	establishmentId int required // fk con establecimiento // no queda siendo fk int 4
+	registrationAt ZonedDateTime required
+	serial String required // fk device
+  departureAt ZonedDateTime 
+	deviceNumber Integer  // preguntar con wagner
+}
+
+
+entity CounterType { 
+  counterCode String maxlength(25) required // pk
+  name String 
+	description String 
+	includedInFormula Boolean // se renombra?  --> renombrado
+	prize Boolean 
+	category String 
+	updateWaitTime Integer // (int 2) small
+}
+------------------------------------
+entity CounterEvent {
+	id uuid
+  //counterCode String  // relationship fk CounterType
+	//idEventDevice uuid 	// relationship fk EventDevice
+	valueCounter Long  //int 8
+	denominationSale Float 	
+}
+
+entity DeviceType {
+  id	Integer  // int 2
+  description	String
+  name	String
+}
+
+entity DeviceCategory {
+  id	Integer  // int 2
+  description	String 
+  name String
+}
+
+// realizar la foreana establecimiento
+entity Isle {
+  id	Integer  // int 2
+  description	String
+  name	String
+}
+
+entity CurrencyType {
+  id	Integer  // int 2
+  // agregrar codigo
+  description	String
+  name	String
+  isPriority Boolean
+  location	String
+  exchangeRate	Float
+}
+
+/** Reunión 29 octubre
+ - CurrencyType agregar parametros { code, symbol, decimalPlaces, decimalSeparator, thousandSeparator }
+ - relacionar isla con el establecimiento
+ - relacionar CurrencyType con el establecimiento
+ - falta la tabla eventTypeModel - moduleEventos 
+ - En Pais agrega idioma por defecto varchar(5) lang
+*/
+
+// preguntar si podemos quitar state, o es de audiotoria
+entity Device {
+	id uuid
+	serial String required 
+  isProtocolEsdcs Boolean
+  numberPlayedReport Integer
+  sasDenomination BigDecimal
+  //isTable Boolean //---> no va felipe --> tipo de dispositivo,
+  isMultigame Boolean
+  isMultiDenomination Boolean
+  isRetanqueo Boolean
+  state String //cambiar de deviceStatus a <--
+  theoreticalHold BigDecimal
+  sasIdentifier Integer
+  creditLimit Long
+  hasHooper Boolean
+  //idInterface int //fk--> int 4
+  //idModel int // fk modelo  -->  int 4 
+  coljuegosCode String
+  fabricationDate LocalDate // basta con el tipo dato
+  //idDeviceCategory int //fk--> int 2
+  //DeviceType int //fk--> int 2
+  currentToken BigDecimal // cambiar a float
+  denominationTito BigDecimal // cambiar a float
+  endLostCommunication ZonedDateTime
+  startLostCommunication ZonedDateTime
+  reportMultiplier BigDecimal // cambiar a float
+  nuid String
+  payManualPrize Boolean // preguntar que diferencia hay con el manualHandpay 
+  manualHandpay Boolean
+  manualJackpot Boolean
+  //idFormulaHandpay int //fk--> int 2
+  //idFormulaJackpot int //fk--> int 2
+  manualGameEvent Boolean
+  betCode String
+  homologationIndicator Boolean // preguntar
+  coljuegosModel String // preguntar
+  reportable Boolean
+  aftDenomination BigDecimal
+  lastUpdateDate ZonedDateTime // preguntar
+  enableRollover Boolean // preguntar si se puede sacar corregido por camilo
+  //idIsland int //fk--> int 2 // ya no va ser fk isle
+  lastCorruptionDate ZonedDateTime
+  daftDenomination BigDecimal
+  //idCurrencyType int//fk--> ya no va ser fk int 2
+  prizesEnabled Boolean
+  //serialDeviceStatus //fk--> uuid  // analizar con gente del smol 
+}
+
+// se va obtener los ultimos contadores a partir de la tabla eventDevice (fecha)
+////////////////////////////////////////////////////////////////////////////
+// preguntar si podemos quitar state, o es de audiotoria
+entity CounterDevice {
+  id uuid // agregue una pk unica
+  //counterCode	String //pk fk // counterType  ----> ok
+  //serial String //  idDevice uuid pk fk dispositivo device  //pendienteevaluar dispositivo
+  value	BigDecimal
+  rolloverValue	BigDecimal
+  creditSale BigDecimal // preguntar
+  manualCounter	Boolean // preguntar
+  manualMultiplier BigDecimal 
+  decimalsManualCounter	Boolean  // preguntar
+}
+
+// preguntar si podemos quitar state, o es de audiotoria
+entity Manufacturer {
+  id Integer // (int 2) small int 
+  code String 
+  name String
+}
+
+entity Formula {
+  id Integer  // (int 2) small int
+  description String
+  expression String
+}
+
+// preguntar si podemos quitar state, o es de audiotoria
+entity Model {
+  id Integer  // (int 2) 
+  code String required 
+  name String
+  //idManufacturer int //fk--> small int 
+  //idFormula	int //fk--> int 2
+  subtractBonus	Boolean
+  collectionCeil BigDecimal //(numerico 15, 4) // moneda 
+  rolloverLimit	BigDecimal
+}
+
+relationship ManyToMany {
+  EventType{idEventType} to Model{idModel}
+}
+
+// preguntar si podemos quitar state, o es de audiotoria
+// entity ModelEventType { // tabla pivote
+//   idEventType int  // (int 2) small int fk
+//   idModel int // fk modelo  -->  int 4 
+// }
+
+// preguntar si podemos quitar state, o es de audiotoria
+entity InterfaceBoard {
+  id Long // int 8 // 
+  isAssigned Boolean
+  ipAddress String
+  hash String
+  serial String // la mayoria de veces es un mac
+  version String // cambiar a numerico
+  //casinoCode String // idEstablishment int sacar relación
+  port String // cambiar tipo de dato
+}
+
+enum DeviceInterfaceStatus {
+  STOCK,
+  OPERATION,
+  MAINTENANCE  
+}
+
+entity DeviceInterface {
+  id Long 
+  interface
+  startDate	ZonedDateTime
+  endDate ZonedDateTime
+  device,
+  establishmentId
+  state DeviceInterfaceStatus
+}
+
+// preguntar si podemos quitar state, o es de audiotoria
+entity Operator {
+  id Integer // pregunta de donde lo sacan small int2
+  permitDescription String // que es eso?
+  endDate ZonedDateTime // preguntar
+  startDate	ZonedDateTime  // preguntar
+  minAccumulatedPrize BigDecimal // ir a una config del operador
+  minIndividualPrize BigDecimal // ir a una config del operador
+  minTransactionAccumulated BigDecimal // ir a una config del operador
+  minIndividualTransaction BigDecimal // ir a una config del operador
+  nit	String
+  contractNumber String
+  eventQuantity Integer // preguntar
+  companyName	String
+  municipalityCode String // preguntar
+  brand String
+}
+
+entity KeyOperationalProperties {
+  id integer // int 2
+  description Text 
+  property String maxlength(32)
+}
+
+entity OperationalPropertiesEstablishment {
+  keyId Integer // fk  //pk se compone del keyId y idEstablishment
+  idEstablishment // fk
+  value Text
+}
+
+entity Municipality {
+  id Integer  // int 2
+  code String maxlength(25) // varhcar(25)
+  name String
+  //departmentCode // fk 
+  daneCode String maxlength(25)
+}
+
+entity Province {
+  id Integer  // int 2
+  code String maxlength(25) // varhcar(25)
+  name String
+  //codigo pais // fk 
+  daneCode String maxlength(25)
+  phoneId 
+}
+
+entity Country {
+  id Integer  // int 2
+  code String maxlength(25) // varhcar(25)
+  name String maxlength(50)
+  identifier String maxlength(20)
+}
+
+/* ya no va
+relationship ManyToMany {
+  EventType{idEventType} to Model{idModel}
+}
+*/
+
+
+relationship ManyToOne {
+  EventDevice{deviceEstablishment required} to DeviceEstablishment // va
+  EventDevice{eventType required} to EventType 
+  //DeviceEstablishment{ establishment required} to Establishment // ya no va
+  DeviceEstablishment{device} to Device // va
+  //CounterEvent{counterCode required} to CounterType  // no va
+  CounterEvent{eventDevice required} to EventDevice // va
+  CounterDevice{device required} to Device 
+  Model{manufacturer required} to Manufacturer 
+  Model{formula required} to Formula 
+  //Interfacing{establishment required} to Establishment // no va
+  //Interfacing{device} to Device // nueva
+  //OperationalPropertiesEstablishment{establishment required} to Establishment // cambiar a fk de dos ids
+  //Device{interfacing required} to Interfacing // preguntar
+  Device{model required} to Model  
+  Device{deviceCategory required} to DeviceCategory 
+  Device{deviceType required} to DeviceType 
+  Device{formulaHandpay} to Formula 
+  Device{formulaJackpot} to Formula 
+  //Device{isle} to Island // no va 
+  //Device{currencyType} to CurrencyType  // no va 
+  Establishment{operator} to Operator
+  Establishment{municipality} to Municipality
+  Operator{municipality} to Municipality
+  Municipality{department} to Department
+  Department{country} to Country
+}
+
+service all with serviceImpl
+dto all with mapstruct
+paginate all with pagination
+filter all
+
+// ----> casino 1 a 1 con establecimiento
+// esta si se sigue llamando casino o establecimiento 
+// preguntar si podemos quitar state, o es de audiotoria
+//entity Casino {
+  //casinoCode String required  //pk--> uuid  ---> casino quedo sin propiedades
+  //ipAddress String // preguntar si va ---> establecimiento (OPERATIVDAD) ----> wagner no va
+  //updateStatus String // para que es -----> wagner no va
+  //monitored	Boolean required //preguntar //----> wagner no va
+  //synchronizable Boolean required //preguntar //----> wagner no va  
+  //salt String//---> preguntar  (OPERATIVDAD) ----> wagner no va
+  //password String // preguntar smol //---> wagner no va
+  //askForPassword	Boolean // preguntar smol //----> wagner no va
+  //protocolServices String //preguntar a diego //--->----> diego no va
+  //idCasino String // preguntar smol// ----> wagner no va
+  //currentBalance BigDecimal required //---> preguntar  ----> wagner no va
+  //shareFatherBag Boolean required // preguntar//----> wagner no va
+  //activateHealthEmergencyMode	Boolean //preguntar//----> wagner no va
+  //lockingDeviceForCleaning	Boolean //preguntar//----> wagner no va
+  //stopBlockedDevices Integer // preguntar//----> wagner no va
+  //minuteStopCleaningMachine	Integer  // preguntar//----> wagner no va
+//}
+
+/*
+ clientRedeemableLoad Boolean // estableciento tiene  //--->establecimiento (OPERATIVDAD) ok wagner
+  clientRestrictedLoad Boolean // estableciento tiene //--->establecimiento (OPERATIVDAD) ok wagner
+  maximumLoadAmount	Double // estableciento tiene //---> -->establecimiento (OPERATIVDAD) ok wagner
+  maximumPrizeAmount Double // estableciento tiene //-->establecimiento (OPERATIVDAD) ok wagner  
+  timeEventManualGame	Integer  // estableciento tiene //-->establecimiento (OPERATIVDAD) ok wagner
+  typeCollection String //---> pregunta -->establecimiento (OPERATIVDAD) ok wagner
+  automaticAwardRecovery Boolean //---> PREGUNTAR -->establecimiento (OPERATIVDAD) ok wagner 
+  printPrize	Boolean // preguntar // casino tiene  //---> casino (OPERATIVDAD)  ok wagner
+  externalPaymentPrize Boolean //preguntar//---> // ---> casino (OPERATIVDAD)  ok wagner
+  minimumExternalPayment Double  //preguntar//---> casino (OPERATIVDAD)  ok wagner  
+  localPrinter Boolean //preguntar ---> (OPERATIVDAD) casino  ok wagner
+  disableMysteryMachine	Boolean// preguntar --->(OPERATIVDAD)  casino  ok wagner
+  minAccumulatedPrize BigDecimal
+  minIndividualPrize BigDecimal
+  minTransactionAccumulated BigDecimal
+  minIndividualTransaction BigDecimal */
+
+// preguntar si llega a ver otra
+
+

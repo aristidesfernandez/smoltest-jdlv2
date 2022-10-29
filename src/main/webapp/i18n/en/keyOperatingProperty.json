@@ -1,0 +1,25 @@
+{
+  "smolPlusTempApp": {
+    "keyOperatingProperty": {
+      "home": {
+        "title": "Key Operating Properties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Key Operating Property",
+        "createOrEditLabel": "Create or edit a Key Operating Property",
+        "notFound": "No Key Operating Properties found"
+      },
+      "created": "A new Key Operating Property is created with identifier {{ param }}",
+      "updated": "A Key Operating Property is updated with identifier {{ param }}",
+      "deleted": "A Key Operating Property is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Key Operating Property {{ id }}?"
+      },
+      "detail": {
+        "title": "Key Operating Property"
+      },
+      "id": "Id",
+      "description": "Description",
+      "property": "Property"
+    }
+  }
+}

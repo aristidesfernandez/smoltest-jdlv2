@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="keyOperatingProperty">
+      <h2 data-cy="keyOperatingPropertyDetailsHeading">
+        <span jhiTranslate="smolPlusTempApp.keyOperatingProperty.detail.title">Key Operating Property</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.keyOperatingProperty.id">Id</span></dt>
+        <dd>
+          <span>{{ keyOperatingProperty.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.keyOperatingProperty.description">Description</span></dt>
+        <dd>
+          <span>{{ keyOperatingProperty.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.keyOperatingProperty.property">Property</span></dt>
+        <dd>
+          <span>{{ keyOperatingProperty.property }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/key-operating-property', keyOperatingProperty.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

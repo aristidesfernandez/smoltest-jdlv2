@@ -1,0 +1,36 @@
+{
+  "smolPlusTempApp": {
+    "establishment": {
+      "home": {
+        "title": "Establishments",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Establishment",
+        "createOrEditLabel": "Crear o editar Establishment",
+        "notFound": "Ningún Establishments encontrado"
+      },
+      "created": "Un nuevo Establishment ha sido creado con el identificador {{ param }}",
+      "updated": "Un Establishment ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Establishment ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Establishment {{ id }}?"
+      },
+      "detail": {
+        "title": "Establishment"
+      },
+      "id": "Id",
+      "liquidationTime": "Liquidation Time",
+      "name": "Name",
+      "type": "Type",
+      "neighborhood": "Neighborhood",
+      "address": "Address",
+      "coljuegosCode": "Coljuegos Code",
+      "startTime": "Start Time",
+      "closeTime": "Close Time",
+      "longitude": "Longitude",
+      "latitude": "Latitude",
+      "mercantileRegistration": "Mercantile Registration",
+      "operator": "Operator",
+      "municipality": "Municipality"
+    }
+  }
+}

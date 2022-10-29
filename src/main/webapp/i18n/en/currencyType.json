@@ -1,0 +1,28 @@
+{
+  "smolPlusTempApp": {
+    "currencyType": {
+      "home": {
+        "title": "Currency Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Currency Type",
+        "createOrEditLabel": "Create or edit a Currency Type",
+        "notFound": "No Currency Types found"
+      },
+      "created": "A new Currency Type is created with identifier {{ param }}",
+      "updated": "A Currency Type is updated with identifier {{ param }}",
+      "deleted": "A Currency Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Currency Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Currency Type"
+      },
+      "id": "Id",
+      "description": "Description",
+      "name": "Name",
+      "isPriority": "Is Priority",
+      "location": "Location",
+      "exchangeRate": "Exchange Rate"
+    }
+  }
+}

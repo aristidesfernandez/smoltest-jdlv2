@@ -1,0 +1,45 @@
+{
+  "applications": ["smolPlusTemp"],
+  "changelogDate": "20210927194720",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "event_device",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "theoreticalPercentage",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "moneyDenomination",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "EventDevice",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "deviceEstablishment",
+      "relationshipName": "deviceEstablishment",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "eventType",
+      "relationshipName": "eventType",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceImpl"
+}

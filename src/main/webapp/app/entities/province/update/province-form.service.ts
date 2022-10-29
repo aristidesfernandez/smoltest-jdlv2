@@ -1,0 +1,82 @@
+import { Injectable } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { IProvince, NewProvince } from '../province.model';
+
+/**
+ * A partial Type with required key is used as form input.
+ */
+type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>> & { id: T['id'] };
+
+/**
+ * Type for createFormGroup and resetForm argument.
+ * It accepts IProvince for edit and NewProvinceFormGroupInput for create.
+ */
+type ProvinceFormGroupInput = IProvince | PartialWithRequiredKeyOf<NewProvince>;
+
+type ProvinceFormDefaults = Pick<NewProvince, 'id'>;
+
+type ProvinceFormGroupContent = {
+  id: FormControl<IProvince['id'] | NewProvince['id']>;
+  code: FormControl<IProvince['code']>;
+  name: FormControl<IProvince['name']>;
+  daneCode: FormControl<IProvince['daneCode']>;
+  phoneId: FormControl<IProvince['phoneId']>;
+  country: FormControl<IProvince['country']>;
+};
+
+export type ProvinceFormGroup = FormGroup<ProvinceFormGroupContent>;
+
+@Injectable({ providedIn: 'root' })
+export class ProvinceFormService {
+  createProvinceFormGroup(province: ProvinceFormGroupInput = { id: null }): ProvinceFormGroup {
+    const provinceRawValue = {
+      ...this.getFormDefaults(),
+      ...province,
+    };
+    return new FormGroup<ProvinceFormGroupContent>({
+      id: new FormControl(
+        { value: provinceRawValue.id, disabled: true },
+        {
+          nonNullable: true,
+          validators: [Validators.required],
+        }
+      ),
+      code: new FormControl(provinceRawValue.code, {
+        validators: [Validators.maxLength(25)],
+      }),
+      name: new FormControl(provinceRawValue.name, {
+        validators: [Validators.maxLength(50)],
+      }),
+      daneCode: new FormControl(provinceRawValue.daneCode, {
+        validators: [Validators.maxLength(25)],
+      }),
+      phoneId: new FormControl(provinceRawValue.phoneId, {
+        validators: [Validators.maxLength(15)],
+      }),
+      country: new FormControl(provinceRawValue.country, {
+        validators: [Validators.required],
+      }),
+    });
+  }
+
+  getProvince(form: ProvinceFormGroup): IProvince | NewProvince {
+    return form.getRawValue() as IProvince | NewProvince;
+  }
+
+  resetForm(form: ProvinceFormGroup, province: ProvinceFormGroupInput): void {
+    const provinceRawValue = { ...this.getFormDefaults(), ...province };
+    form.reset(
+      {
+        ...provinceRawValue,
+        id: { value: provinceRawValue.id, disabled: true },
+      } as any /* cast to workaround https://github.com/angular/angular/issues/46458 */
+    );
+  }
+
+  private getFormDefaults(): ProvinceFormDefaults {
+    return {
+      id: null,
+    };
+  }
+}

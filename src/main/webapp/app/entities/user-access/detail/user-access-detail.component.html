@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userAccess">
+      <h2 data-cy="userAccessDetailsHeading"><span jhiTranslate="smolPlusTempApp.userAccess.detail.title">User Access</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.userAccess.id">Id</span></dt>
+        <dd>
+          <span>{{ userAccess.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.userAccess.username">Username</span></dt>
+        <dd>
+          <span>{{ userAccess.username }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.userAccess.ipAddress">Ip Address</span></dt>
+        <dd>
+          <span>{{ userAccess.ipAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.userAccess.registrationAt">Registration At</span></dt>
+        <dd>
+          <span>{{ userAccess.registrationAt | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-access', userAccess.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "smolPlusTempApp": {
+    "deviceInterface": {
+      "home": {
+        "title": "Device Interfaces",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Device Interface",
+        "createOrEditLabel": "Create or edit a Device Interface",
+        "notFound": "No Device Interfaces found"
+      },
+      "created": "A new Device Interface is created with identifier {{ param }}",
+      "updated": "A Device Interface is updated with identifier {{ param }}",
+      "deleted": "A Device Interface is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Device Interface {{ id }}?"
+      },
+      "detail": {
+        "title": "Device Interface"
+      },
+      "id": "Id",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "establishmentId": "Establishment Id",
+      "state": "State",
+      "device": "Device",
+      "interfaceBoard": "Interface Board"
+    }
+  }
+}

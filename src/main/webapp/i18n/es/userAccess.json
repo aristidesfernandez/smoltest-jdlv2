@@ -1,0 +1,26 @@
+{
+  "smolPlusTempApp": {
+    "userAccess": {
+      "home": {
+        "title": "User Accesses",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo User Access",
+        "createOrEditLabel": "Crear o editar User Access",
+        "notFound": "Ningún User Accesses encontrado"
+      },
+      "created": "Un nuevo User Access ha sido creado con el identificador {{ param }}",
+      "updated": "Un User Access ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un User Access ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar User Access {{ id }}?"
+      },
+      "detail": {
+        "title": "User Access"
+      },
+      "id": "Id",
+      "username": "Username",
+      "ipAddress": "Ip Address",
+      "registrationAt": "Registration At"
+    }
+  }
+}

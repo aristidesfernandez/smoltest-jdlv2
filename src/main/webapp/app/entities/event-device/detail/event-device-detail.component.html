@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="eventDevice">
+      <h2 data-cy="eventDeviceDetailsHeading"><span jhiTranslate="smolPlusTempApp.eventDevice.detail.title">Event Device</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smolPlusTempApp.eventDevice.id">Id</span></dt>
+        <dd>
+          <span>{{ eventDevice.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventDevice.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ eventDevice.createdAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventDevice.theoreticalPercentage">Theoretical Percentage</span></dt>
+        <dd>
+          <span>{{ eventDevice.theoreticalPercentage }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventDevice.moneyDenomination">Money Denomination</span></dt>
+        <dd>
+          <span>{{ eventDevice.moneyDenomination }}</span>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventDevice.deviceEstablishment">Device Establishment</span></dt>
+        <dd>
+          <div *ngIf="eventDevice.deviceEstablishment">
+            <a [routerLink]="['/device-establishment', eventDevice.deviceEstablishment.id, 'view']">{{
+              eventDevice.deviceEstablishment.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="smolPlusTempApp.eventDevice.eventType">Event Type</span></dt>
+        <dd>
+          <div *ngIf="eventDevice.eventType">
+            <a [routerLink]="['/event-type', eventDevice.eventType.id, 'view']">{{ eventDevice.eventType.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/event-device', eventDevice.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

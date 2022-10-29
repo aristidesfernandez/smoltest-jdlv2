@@ -1,0 +1,626 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-device-heading" data-cy="DeviceCreateUpdateHeading" jhiTranslate="smolPlusTempApp.device.home.createOrEditLabel">
+        Crear o editar Device
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.id" for="field_id">Id</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.serial" for="field_serial">Serial</label>
+          <input type="text" class="form-control" name="serial" id="field_serial" data-cy="serial" formControlName="serial" />
+          <div *ngIf="editForm.get('serial')!.invalid && (editForm.get('serial')!.dirty || editForm.get('serial')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('serial')?.errors?.required" jhiTranslate="entity.validation.required">
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('serial')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.isProtocolEsdcs" for="field_isProtocolEsdcs"
+            >Is Protocol Esdcs</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isProtocolEsdcs"
+            id="field_isProtocolEsdcs"
+            data-cy="isProtocolEsdcs"
+            formControlName="isProtocolEsdcs"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.numberPlayedReport" for="field_numberPlayedReport"
+            >Number Played Report</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numberPlayedReport"
+            id="field_numberPlayedReport"
+            data-cy="numberPlayedReport"
+            formControlName="numberPlayedReport"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.sasDenomination" for="field_sasDenomination"
+            >Sas Denomination</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="sasDenomination"
+            id="field_sasDenomination"
+            data-cy="sasDenomination"
+            formControlName="sasDenomination"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.isMultigame" for="field_isMultigame">Is Multigame</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isMultigame"
+            id="field_isMultigame"
+            data-cy="isMultigame"
+            formControlName="isMultigame"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.isMultiDenomination" for="field_isMultiDenomination"
+            >Is Multi Denomination</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isMultiDenomination"
+            id="field_isMultiDenomination"
+            data-cy="isMultiDenomination"
+            formControlName="isMultiDenomination"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.isRetanqueo" for="field_isRetanqueo">Is Retanqueo</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isRetanqueo"
+            id="field_isRetanqueo"
+            data-cy="isRetanqueo"
+            formControlName="isRetanqueo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.state" for="field_state">State</label>
+          <input type="text" class="form-control" name="state" id="field_state" data-cy="state" formControlName="state" />
+          <div *ngIf="editForm.get('state')!.invalid && (editForm.get('state')!.dirty || editForm.get('state')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('state')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              Este campo no puede superar más de 30 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.theoreticalHold" for="field_theoreticalHold"
+            >Theoretical Hold</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="theoreticalHold"
+            id="field_theoreticalHold"
+            data-cy="theoreticalHold"
+            formControlName="theoreticalHold"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.sasIdentifier" for="field_sasIdentifier">Sas Identifier</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sasIdentifier"
+            id="field_sasIdentifier"
+            data-cy="sasIdentifier"
+            formControlName="sasIdentifier"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.creditLimit" for="field_creditLimit">Credit Limit</label>
+          <input
+            type="number"
+            class="form-control"
+            name="creditLimit"
+            id="field_creditLimit"
+            data-cy="creditLimit"
+            formControlName="creditLimit"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.hasHooper" for="field_hasHooper">Has Hooper</label>
+          <input type="checkbox" class="form-check" name="hasHooper" id="field_hasHooper" data-cy="hasHooper" formControlName="hasHooper" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.coljuegosCode" for="field_coljuegosCode">Coljuegos Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="coljuegosCode"
+            id="field_coljuegosCode"
+            data-cy="coljuegosCode"
+            formControlName="coljuegosCode"
+          />
+          <div
+            *ngIf="
+              editForm.get('coljuegosCode')!.invalid && (editForm.get('coljuegosCode')!.dirty || editForm.get('coljuegosCode')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('coljuegosCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.fabricationDate" for="field_fabricationDate"
+            >Fabrication Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fabricationDate"
+              data-cy="fabricationDate"
+              type="text"
+              class="form-control"
+              name="fabricationDate"
+              ngbDatepicker
+              #fabricationDateDp="ngbDatepicker"
+              formControlName="fabricationDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fabricationDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.currentToken" for="field_currentToken">Current Token</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currentToken"
+            id="field_currentToken"
+            data-cy="currentToken"
+            formControlName="currentToken"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.denominationTito" for="field_denominationTito"
+            >Denomination Tito</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="denominationTito"
+            id="field_denominationTito"
+            data-cy="denominationTito"
+            formControlName="denominationTito"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.endLostCommunication" for="field_endLostCommunication"
+            >End Lost Communication</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_endLostCommunication"
+              data-cy="endLostCommunication"
+              type="datetime-local"
+              class="form-control"
+              name="endLostCommunication"
+              formControlName="endLostCommunication"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.startLostCommunication" for="field_startLostCommunication"
+            >Start Lost Communication</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_startLostCommunication"
+              data-cy="startLostCommunication"
+              type="datetime-local"
+              class="form-control"
+              name="startLostCommunication"
+              formControlName="startLostCommunication"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.reportMultiplier" for="field_reportMultiplier"
+            >Report Multiplier</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="reportMultiplier"
+            id="field_reportMultiplier"
+            data-cy="reportMultiplier"
+            formControlName="reportMultiplier"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.nuid" for="field_nuid">Nuid</label>
+          <input type="text" class="form-control" name="nuid" id="field_nuid" data-cy="nuid" formControlName="nuid" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.payManualPrize" for="field_payManualPrize">Pay Manual Prize</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="payManualPrize"
+            id="field_payManualPrize"
+            data-cy="payManualPrize"
+            formControlName="payManualPrize"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.manualHandpay" for="field_manualHandpay">Manual Handpay</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="manualHandpay"
+            id="field_manualHandpay"
+            data-cy="manualHandpay"
+            formControlName="manualHandpay"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.manualJackpot" for="field_manualJackpot">Manual Jackpot</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="manualJackpot"
+            id="field_manualJackpot"
+            data-cy="manualJackpot"
+            formControlName="manualJackpot"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.manualGameEvent" for="field_manualGameEvent"
+            >Manual Game Event</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="manualGameEvent"
+            id="field_manualGameEvent"
+            data-cy="manualGameEvent"
+            formControlName="manualGameEvent"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.betCode" for="field_betCode">Bet Code</label>
+          <input type="text" class="form-control" name="betCode" id="field_betCode" data-cy="betCode" formControlName="betCode" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.homologationIndicator" for="field_homologationIndicator"
+            >Homologation Indicator</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="homologationIndicator"
+            id="field_homologationIndicator"
+            data-cy="homologationIndicator"
+            formControlName="homologationIndicator"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.coljuegosModel" for="field_coljuegosModel">Coljuegos Model</label>
+          <input
+            type="text"
+            class="form-control"
+            name="coljuegosModel"
+            id="field_coljuegosModel"
+            data-cy="coljuegosModel"
+            formControlName="coljuegosModel"
+          />
+          <div
+            *ngIf="
+              editForm.get('coljuegosModel')!.invalid && (editForm.get('coljuegosModel')!.dirty || editForm.get('coljuegosModel')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('coljuegosModel')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Este campo no puede superar más de 50 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.reportable" for="field_reportable">Reportable</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="reportable"
+            id="field_reportable"
+            data-cy="reportable"
+            formControlName="reportable"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.aftDenomination" for="field_aftDenomination"
+            >Aft Denomination</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="aftDenomination"
+            id="field_aftDenomination"
+            data-cy="aftDenomination"
+            formControlName="aftDenomination"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.lastUpdateDate" for="field_lastUpdateDate">Last Update Date</label>
+          <div class="d-flex">
+            <input
+              id="field_lastUpdateDate"
+              data-cy="lastUpdateDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastUpdateDate"
+              formControlName="lastUpdateDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.enableRollover" for="field_enableRollover">Enable Rollover</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="enableRollover"
+            id="field_enableRollover"
+            data-cy="enableRollover"
+            formControlName="enableRollover"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.lastCorruptionDate" for="field_lastCorruptionDate"
+            >Last Corruption Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastCorruptionDate"
+              data-cy="lastCorruptionDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastCorruptionDate"
+              formControlName="lastCorruptionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.daftDenomination" for="field_daftDenomination"
+            >Daft Denomination</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="daftDenomination"
+            id="field_daftDenomination"
+            data-cy="daftDenomination"
+            formControlName="daftDenomination"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.prizesEnabled" for="field_prizesEnabled">Prizes Enabled</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="prizesEnabled"
+            id="field_prizesEnabled"
+            data-cy="prizesEnabled"
+            formControlName="prizesEnabled"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.currencyTypeId" for="field_currencyTypeId">Currency Type Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currencyTypeId"
+            id="field_currencyTypeId"
+            data-cy="currencyTypeId"
+            formControlName="currencyTypeId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.isleId" for="field_isleId">Isle Id</label>
+          <input type="number" class="form-control" name="isleId" id="field_isleId" data-cy="isleId" formControlName="isleId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.model" for="field_model">Model</label>
+          <select class="form-control" id="field_model" data-cy="model" name="model" formControlName="model" [compareWith]="compareModel">
+            <option *ngIf="!editForm.get('model')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="modelOption" *ngFor="let modelOption of modelsSharedCollection">{{ modelOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['model'])!.invalid && (editForm.get(['model'])!.dirty || editForm.get(['model'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['model'])?.errors?.required" jhiTranslate="entity.validation.required">
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.deviceCategory" for="field_deviceCategory">Device Category</label>
+          <select
+            class="form-control"
+            id="field_deviceCategory"
+            data-cy="deviceCategory"
+            name="deviceCategory"
+            formControlName="deviceCategory"
+            [compareWith]="compareDeviceCategory"
+          >
+            <option *ngIf="!editForm.get('deviceCategory')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="deviceCategoryOption" *ngFor="let deviceCategoryOption of deviceCategoriesSharedCollection">
+              {{ deviceCategoryOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['deviceCategory'])!.invalid &&
+            (editForm.get(['deviceCategory'])!.dirty || editForm.get(['deviceCategory'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['deviceCategory'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.deviceType" for="field_deviceType">Device Type</label>
+          <select
+            class="form-control"
+            id="field_deviceType"
+            data-cy="deviceType"
+            name="deviceType"
+            formControlName="deviceType"
+            [compareWith]="compareDeviceType"
+          >
+            <option *ngIf="!editForm.get('deviceType')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="deviceTypeOption" *ngFor="let deviceTypeOption of deviceTypesSharedCollection">
+              {{ deviceTypeOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['deviceType'])!.invalid && (editForm.get(['deviceType'])!.dirty || editForm.get(['deviceType'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['deviceType'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.formulaHandpay" for="field_formulaHandpay">Formula Handpay</label>
+          <select
+            class="form-control"
+            id="field_formulaHandpay"
+            data-cy="formulaHandpay"
+            name="formulaHandpay"
+            formControlName="formulaHandpay"
+            [compareWith]="compareFormula"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="formulaOption" *ngFor="let formulaOption of formulasSharedCollection">{{ formulaOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smolPlusTempApp.device.formulaJackpot" for="field_formulaJackpot">Formula Jackpot</label>
+          <select
+            class="form-control"
+            id="field_formulaJackpot"
+            data-cy="formulaJackpot"
+            name="formulaJackpot"
+            formControlName="formulaJackpot"
+            [compareWith]="compareFormula"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="formulaOption" *ngFor="let formulaOption of formulasSharedCollection">{{ formulaOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
